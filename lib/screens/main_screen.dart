@@ -1,4 +1,5 @@
 import 'package:aixformation_app/classes/class_post.dart';
+import 'package:aixformation_app/helper/get_data.dart';
 import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:aixformation_app/screens/loading_screen.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
@@ -7,14 +8,13 @@ import 'package:flutter/material.dart';
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     return FutureBuilder(
-      future: GetPosts().getPosts(),
-      builder: (context, snapshot) {
+      future: GetData().getallData(),
+      builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
         }
-        List<Post> posts = snapshot.data;
+        List<Post> posts = snapshot.data['posts'];
         return Scaffold(
           appBar: AppBar(
             //elevation: 0,
@@ -24,15 +24,17 @@ class MainScreen extends StatelessWidget {
           body: ListView.builder(
             cacheExtent: 1000,
             itemCount: posts.length,
-            itemBuilder: (context, index) => PostItem(posts[index]),
+            itemBuilder: (context, index) => PostItem(
+              post: posts[index],
+              authors: snapshot.data['authors'],
+              categories: snapshot.data['categories'],
+            ),
           ),
         );
       },
     );
   }
 }
-
-
 
 /*GridView.builder(
             padding: const EdgeInsets.all(10),

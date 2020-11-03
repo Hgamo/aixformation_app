@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -52,6 +52,7 @@ class PostScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(18),
                   child: HtmlWidget(
+
                     post.contentHtml,
                     onTapUrl: (url) => launch(
                       url,

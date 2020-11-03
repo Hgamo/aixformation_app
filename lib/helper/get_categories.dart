@@ -3,10 +3,22 @@ import 'package:aixformation_app/classes/category.dart';
 import 'package:http/http.dart' as http;
 
 class GetCategories {
-  List categories;
-  GetCategories(this.categories);
+  Future<List<Category>> getallcategories() async {
+    final response = await http
+        .get('https://aixformation.de/wp-json/wp/v2/categories?per_page=100');
+    final List data = jsonDecode(response.body);
 
-  Future<List<String>> getCategoriesById() async {
+    List<Category> possiblecategories = [];
+    data.forEach((element) {
+      possiblecategories.add(Category(
+        id: element['id'],
+        name: element['name'],
+      ));
+    });
+    return possiblecategories;
+  }
+
+  Future<List<String>> getCategoriesById(List categories) async {
     final response = await http
         .get('https://aixformation.de/wp-json/wp/v2/categories?per_page=100');
     final List data = jsonDecode(response.body);

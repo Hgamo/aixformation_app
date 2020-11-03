@@ -1,3 +1,5 @@
+import 'package:aixformation_app/classes/author.dart';
+import 'package:aixformation_app/classes/category.dart';
 import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/my_time.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
@@ -9,9 +11,11 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
 
-class PostItem extends StatelessWidget  {
+class PostItem extends StatelessWidget {
+  final List<Author> authors;
+  final List<Category> categories;
   final Post post;
-  PostItem(this.post);
+  PostItem({this.post, this.authors, this.categories});
   @override
   Widget build(BuildContext context) {
     var unescape = new HtmlUnescape();
@@ -43,7 +47,10 @@ class PostItem extends StatelessWidget  {
                   fit: BoxFit.cover,
                 ),
               ),
-              CategoryName(post.categories),
+              CategoryName(
+                categories: post.categories,
+                allcategories: categories,
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                   //top: 5,
@@ -74,7 +81,10 @@ class PostItem extends StatelessWidget  {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    AuthorName(post.author),
+                    AuthorName(
+                      author: post.author,
+                      allauthors: authors,
+                    ),
                     SizedBox(width: 5),
                     Text(
                       dateToText(post.date),
