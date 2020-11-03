@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:aixformation_app/classes/author.dart';
 import 'package:http/http.dart' as http;
 import 'package:aixformation_app/classes/class_post.dart';
 import 'package:http/http.dart';
@@ -35,5 +36,16 @@ class GetPosts {
         (await http.get('https://aixformation.de/wp-json/wp/v2/users?id=0'))
             .body);
     return (authors.firstWhere((element) => element['id'] == author))['name'];
+  }
+
+  Future<List<Author>> getallauthors() async {
+    final List dataAuthors = jsonDecode(
+        (await http.get('https://aixformation.de/wp-json/wp/v2/users?id=0'))
+            .body);
+    List<Author> authors = [];
+    dataAuthors.forEach((element) {
+      authors.add(Author(id: element['id'], name: element['name']));
+    });
+    return authors;
   }
 }
