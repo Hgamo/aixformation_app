@@ -12,7 +12,7 @@ class AuthorName extends StatelessWidget {
   Widget build(BuildContext context) {
     final String authorName = (allauthors.firstWhere(
       (element) => author == element.id,
-      orElse: () => Author(name: ''),
+      orElse: () => Author(name: 'no Author'),
     )).name;
 
     return Text(
