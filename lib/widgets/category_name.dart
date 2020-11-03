@@ -1,4 +1,3 @@
-import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/widgets/cat_text.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';

@@ -1,6 +1,5 @@
 import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/get_data.dart';
-import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:aixformation_app/screens/loading_screen.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
 import 'package:flutter/material.dart';
