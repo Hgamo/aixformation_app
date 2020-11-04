@@ -5,7 +5,7 @@ String dateToText(DateTime date) {
     return DateFormat('dd.MM.yyyy').format(date);
   }
   if (date.isBefore(DateTime.now().subtract(Duration(hours: 24)))) {
-    return 'vor ${DateTime.now().difference(date).inDays} Tagen';
+    //return 'vor ${DateTime.now().difference(date).inDays} Tagen';
   }
   
   return 'vor ${DateTime.now().difference(date).inHours} Stunden';
