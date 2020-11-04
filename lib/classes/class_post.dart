@@ -8,12 +8,12 @@ class Post {
   int id;
   DateTime date;
   String link;
-  int author;
+  int authorId;
   List categories;
 
   Post({
     this.categories,
-    this.author,
+    this.authorId,
     @required this.title,
     @required this.id,
     this.date,

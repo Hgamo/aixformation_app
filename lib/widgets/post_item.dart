@@ -82,7 +82,7 @@ class PostItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AuthorName(
-                      author: post.author,
+                      author: post.authorId,
                       allauthors: authors,
                     ),
                     SizedBox(width: 5),

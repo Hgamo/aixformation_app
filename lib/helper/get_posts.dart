@@ -16,7 +16,7 @@ class GetPosts {
     jsonposts.forEach((element) {
       posts.add(
         Post(
-          author: element['author'],
+          authorId: element['author'],
           title: element['title']['rendered'],
           id: element['id'],
           date: DateTime.parse(element['date']),
