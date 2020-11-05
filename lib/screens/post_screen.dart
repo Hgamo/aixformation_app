@@ -7,6 +7,7 @@ import 'package:html_unescape/html_unescape.dart';
 
 import '../classes/class_post.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:share/share.dart';
 
 class PostScreen extends StatelessWidget {
   PostScreen(this.post);
@@ -18,7 +19,27 @@ class PostScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            expandedHeight: MediaQuery.of(context).size.height/3,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.open_in_browser),
+                onPressed: () {
+                  launch(
+                    post.link,
+                    option: CustomTabsOption(
+                      enableUrlBarHiding: true,
+                      showPageTitle: true,
+                    ),
+                  );
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.share),
+                onPressed: () {
+                  Share.share(post.link);
+                },
+              ),
+            ],
+            expandedHeight: MediaQuery.of(context).size.height / 3,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
@@ -41,7 +62,6 @@ class PostScreen extends StatelessWidget {
                     unescape.convert(post.title),
                     style: GoogleFonts.arvo(
                       textStyle: TextStyle(
-                        
                         fontWeight: FontWeight.normal,
                         color: Theme.of(context).accentColor,
                         fontSize: 24,
@@ -52,7 +72,6 @@ class PostScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(18),
                   child: HtmlWidget(
-                    
                     post.contentHtml,
                     onTapUrl: (url) => launch(
                       url,
