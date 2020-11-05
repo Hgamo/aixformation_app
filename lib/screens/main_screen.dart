@@ -9,6 +9,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppStart.onAppStrat();
+
     return FutureBuilder(
       future: GetData().getallData(),
       builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
@@ -23,7 +24,7 @@ class MainScreen extends StatelessWidget {
             title: Text('AiXformation'),
           ),
           body: ListView.builder(
-            cacheExtent: 1000,
+            //cacheExtent: 1000,
             itemCount: posts.length,
             itemBuilder: (context, index) => PostItem(
               post: posts[index],

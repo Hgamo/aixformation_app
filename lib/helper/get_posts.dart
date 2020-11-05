@@ -8,7 +8,10 @@ import 'package:http/http.dart';
 class GetPosts {
   static Future<List<Post>> getFirebasePosts() async {
     final firestore = FirebaseFirestore.instance;
-    final dataPosts = await firestore.collection('posts').get();
+    final dataPosts = await firestore
+        .collection('posts')
+        .orderBy('date', descending: true)
+        .get();
 
     final dataPostLists = dataPosts.docs;
 
@@ -31,7 +34,6 @@ class GetPosts {
         ),
       );
     });
-    posts.sort((a,b)=> b.id.compareTo(a.id));
     return posts;
   }
 
@@ -83,5 +85,30 @@ class GetPosts {
       authors.add(Author(id: element['id'], name: element['name']));
     });
     return authors;
+  }
+
+  Future<List<Author>> getFireAuthors() async {
+    final firestore = FirebaseFirestore.instance;
+    final data = (await firestore.collection('users').get()).docs;
+    List<Author> authors = [];
+    data.forEach((element) {
+      final e = element.data();
+      authors.add(Author(
+        id: e['id'],
+        name: e['name'],
+      ));
+    });
+    return authors;
+  }
+
+  void upoadAuthors() async {
+    final categories = await getallauthors();
+    final firestore = FirebaseFirestore.instance;
+    categories.forEach((element) {
+      firestore.collection('users').add({
+        'id': element.id,
+        'name': element.name,
+      });
+    });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:aixformation_app/helper/db_articles.dart';
+import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
@@ -57,6 +58,11 @@ class AppStart {
         setnewestPost(allPosts[0].id);
         return;
       }
+    }
+    final data = await firestore.collection('main').doc('posts').get();
+    if (data.data()['changed']) {
+      GetPosts().upoadAuthors();
+      GetCategories().upoadCategories();
     }
   }
 

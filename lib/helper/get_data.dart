@@ -5,8 +5,8 @@ class GetData {
   Future<Map<String, dynamic>> getallData() async {
     Map<String, dynamic> data = {
       'posts': await GetPosts.getFirebasePosts(),
-      'categories': await GetCategories().getallcategories(),
-      'authors': await GetPosts().getallauthors(),
+      'categories': await GetCategories().getFireCategories(),
+      'authors': await GetPosts().getFireAuthors(),
     };
     return data;
   }

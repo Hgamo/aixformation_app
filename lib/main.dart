@@ -21,7 +21,6 @@ const MaterialColor white = const MaterialColor(
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   runApp(MyApp());
 }
