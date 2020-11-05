@@ -1,4 +1,5 @@
 import 'package:aixformation_app/classes/class_post.dart';
+import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/get_data.dart';
 import 'package:aixformation_app/screens/loading_screen.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AppStart.onAppStrat();
+
     return FutureBuilder(
       future: GetData().getallData(),
       builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
@@ -21,7 +24,7 @@ class MainScreen extends StatelessWidget {
             title: Text('AiXformation'),
           ),
           body: ListView.builder(
-            cacheExtent: 1000,
+            //cacheExtent: 1000,
             itemCount: posts.length,
             itemBuilder: (context, index) => PostItem(
               post: posts[index],

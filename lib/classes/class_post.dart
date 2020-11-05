@@ -8,15 +8,15 @@ class Post {
   int id;
   DateTime date;
   String link;
-  int author;
-  List categories;
+  int authorId;
+  List categoriesId;
 
   Post({
-    this.categories,
-    this.author,
+    @required this.categoriesId,
+    @required this.authorId,
     @required this.title,
     @required this.id,
-    this.date,
+    @required this.date,
     @required this.link,
     @required this.featuredMedia,
     @required this.contentHtml,

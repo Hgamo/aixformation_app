@@ -52,7 +52,7 @@ class PostScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(18),
                   child: HtmlWidget(
-
+                    
                     post.contentHtml,
                     onTapUrl: (url) => launch(
                       url,
