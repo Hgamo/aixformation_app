@@ -48,7 +48,7 @@ class PostItem extends StatelessWidget {
                 ),
               ),
               CategoryName(
-                categories: post.categories,
+                categories: post.categoriesId,
                 allcategories: categories,
               ),
               Padding(
