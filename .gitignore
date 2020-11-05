@@ -45,4 +45,3 @@ app.*.map.json
 
 
 #my Own edits
-json-to-firestore.js
