@@ -2,6 +2,7 @@ import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/get_data.dart';
 import 'package:aixformation_app/screens/loading_screen.dart';
+import 'package:aixformation_app/widgets/fade_in.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +27,20 @@ class MainScreen extends StatelessWidget {
           body: ListView.builder(
             //cacheExtent: 1000,
             itemCount: posts.length,
-            itemBuilder: (context, index) => PostItem(
-              post: posts[index],
-              authors: snapshot.data['authors'],
-              categories: snapshot.data['categories'],
-            ),
+            itemBuilder: (context, index) => index < 3
+                ? FadeIn(
+                    index.toDouble() * 0.5,
+                    PostItem(
+                      post: posts[index],
+                      authors: snapshot.data['authors'],
+                      categories: snapshot.data['categories'],
+                    ),
+                  )
+                : PostItem(
+                    post: posts[index],
+                    authors: snapshot.data['authors'],
+                    categories: snapshot.data['categories'],
+                  ),
           ),
         );
       },

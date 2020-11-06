@@ -41,6 +41,12 @@ dependencies:
   cloud_firestore: ^0.14.2
   connectivity: ^2.0.1
   share: ^0.6.5+4
+  firebase_crashlytics: "^0.2.2"
+  firebase_analytics: "^6.1.0"
+  simple_animations: ^2.2.3
+  firebase_messaging: "^8.0.0-dev.6"
+  firebase_in_app_messaging: ^0.2.1
+  firebase_auth: "^0.18.2"
   
   
 

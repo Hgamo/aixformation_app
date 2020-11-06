@@ -45,3 +45,4 @@ app.*.map.json
 
 
 #my Own edits
+/.vscode/

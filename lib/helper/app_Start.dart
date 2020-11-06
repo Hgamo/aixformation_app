@@ -1,3 +1,4 @@
+import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/helper/db_articles.dart';
 import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/helper/get_posts.dart';
@@ -6,6 +7,10 @@ import 'package:connectivity/connectivity.dart';
 
 class AppStart {
   static void onAppStrat() async {
+    if (Auth.getAuthstae() == null) {
+      Auth.loginAn();
+      print('Log in An');
+    }
     final firestore = FirebaseFirestore.instance;
     ConnectivityResult result = await Connectivity().checkConnectivity();
     if (result == ConnectivityResult.none) {
