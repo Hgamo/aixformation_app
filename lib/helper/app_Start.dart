@@ -1,4 +1,3 @@
-import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/helper/db_articles.dart';
 import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/helper/get_posts.dart';
@@ -8,14 +7,6 @@ import 'package:connectivity/connectivity.dart';
 class AppStart {
   static void onAppStrat() async {
     final firestore = FirebaseFirestore.instance;
-    if (Auth.getAuthstae() == null) {
-      Auth.loginAn();
-      print('Log in An');
-          firestore.collection('fav').doc(Auth.getAuthstae().uid).set(
-      {},
-      SetOptions(merge: true),
-    );
-    }
     
 
     ConnectivityResult result = await Connectivity().checkConnectivity();

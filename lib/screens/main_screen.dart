@@ -17,9 +17,13 @@ class MainScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingScreen();
         }
-        return MainScaffold(
-          snapshot: snapshot,
-        );
+        if (snapshot.connectionState == ConnectionState.done) {
+          
+          return MainScaffold(
+            snapshot: snapshot,
+          );
+        }
+        return Container();
       },
     );
   }

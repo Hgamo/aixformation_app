@@ -23,7 +23,7 @@ class FavButton extends StatelessWidget {
         }
         var data = snapshot.data.data();
         bool isfav;
-        if (data[postId.toString()] == null) {
+        if (data[postId.toString()] == null || data == null) {
           isfav = false;
         } else {
           isfav = data[postId.toString()];
