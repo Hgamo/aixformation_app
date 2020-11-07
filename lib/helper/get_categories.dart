@@ -43,15 +43,4 @@ class GetCategories {
       });
     });
   }
-
-  Future<List<String>> getCategoriesById(List categories) async {
-    List<Category> possiblecategories = await getallcategories();
-    List<String> returncategories = [];
-    possiblecategories.forEach((element) {
-      if (categories.contains(element.id)) {
-        returncategories.add(element.name);
-      }
-    });
-    return returncategories;
-  }
 }

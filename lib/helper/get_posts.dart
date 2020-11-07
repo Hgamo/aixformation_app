@@ -14,9 +14,7 @@ class GetPosts {
         .get();
 
     final dataPostLists = dataPosts.docs;
-
     List<Post> posts = [];
-
     dataPostLists.forEach((element) {
       final postData = element.data();
 
@@ -67,13 +65,6 @@ class GetPosts {
     final posts = fromeResponsetoList(await http
         .get('https://aixformation.de/wp-json/wp/v2/posts?per_page=1&page=1'));
     return posts[0];
-  }
-
-  Future<String> getauthor(int author) async {
-    final List authors = jsonDecode(
-        (await http.get('https://aixformation.de/wp-json/wp/v2/users?id=0'))
-            .body);
-    return (authors.firstWhere((element) => element['id'] == author))['name'];
   }
 
   Future<List<Author>> getallauthors() async {

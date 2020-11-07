@@ -5,6 +5,7 @@ import 'package:aixformation_app/helper/my_time.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
 import 'package:aixformation_app/widgets/author_name.dart';
 import 'package:aixformation_app/widgets/category_name.dart';
+import 'package:aixformation_app/widgets/fav_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -53,7 +54,6 @@ class PostItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  //top: 5,
                   left: 5,
                   right: 5,
                 ),
@@ -77,7 +77,7 @@ class PostItem extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 8, right: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -90,6 +90,8 @@ class PostItem extends StatelessWidget {
                       dateToText(post.date),
                       style: GoogleFonts.ubuntu(),
                     ),
+                    Spacer(),
+                    FavButton(post.id),
                   ],
                 ),
               ),

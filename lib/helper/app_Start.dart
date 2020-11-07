@@ -7,11 +7,17 @@ import 'package:connectivity/connectivity.dart';
 
 class AppStart {
   static void onAppStrat() async {
+    final firestore = FirebaseFirestore.instance;
     if (Auth.getAuthstae() == null) {
       Auth.loginAn();
       print('Log in An');
+          firestore.collection('fav').doc(Auth.getAuthstae().uid).set(
+      {},
+      SetOptions(merge: true),
+    );
     }
-    final firestore = FirebaseFirestore.instance;
+    
+
     ConnectivityResult result = await Connectivity().checkConnectivity();
     if (result == ConnectivityResult.none) {
       //Die App ist nicht online

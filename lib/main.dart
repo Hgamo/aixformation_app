@@ -1,5 +1,5 @@
+import 'package:aixformation_app/screens/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:aixformation_app/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         accentColor: HexColor('#4f6b54'),
       ),
       title: 'AiXformation',
-      home: Wrapper(),
+      home: MainScreen(),
     );
   }
 }
