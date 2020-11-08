@@ -4,6 +4,7 @@ import 'package:aixformation_app/screens/post_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class FavItem extends StatelessWidget {
   final Post post;
@@ -11,8 +12,8 @@ class FavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListTile(
+      padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
+      child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
@@ -20,24 +21,52 @@ class FavItem extends StatelessWidget {
             },
           ),
         ),
-        leading: Hero(
-          tag: post.id,
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            imageUrl: post.featuredMedia,
+        child: Card(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          child: Row(
+            children: [
+              Flexible(
+                flex: 2,
+                child: Hero(
+                  tag: post.id,
+                  child: CachedNetworkImage(
+                    imageUrl: post.featuredMedia,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        HtmlUnescape().convert(post.title),
+                        style: GoogleFonts.arvo(
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).accentColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        dateToText(post.date),
+                        style: GoogleFonts.ubuntu(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-        title: Text(
-          post.title,
-          style: GoogleFonts.arvo(
-            textStyle: TextStyle(
-              color: Theme.of(context).accentColor,
-            ),
-          ),
-        ),
-        subtitle: Text(
-          dateToText(post.date),
-          style: GoogleFonts.ubuntu(),
         ),
       ),
     );
