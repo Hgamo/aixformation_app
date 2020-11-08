@@ -18,7 +18,6 @@ class MainScreen extends StatelessWidget {
           return LoadingScreen();
         }
         if (snapshot.connectionState == ConnectionState.done) {
-          
           return MainScaffold(
             snapshot: snapshot,
           );
@@ -39,6 +38,27 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int pagei = 0;
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      pagei = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +98,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: pagei,
-        onTap: (value) {
-          setState(() {
-            pagei = value;
-          });
-        },
+        onTap: _onItemTapped,
         fixedColor: Theme.of(context).accentColor,
         items: [
           BottomNavigationBarItem(
@@ -99,7 +115,15 @@ class _MainScaffoldState extends State<MainScaffold> {
         centerTitle: true,
         title: Text('AiXformation'),
       ),
-      body: pages[pagei],
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          children: pages,
+          onPageChanged: (index) {
+            setState(() => pagei = index);
+          },
+        ),
+      ),
     );
   }
 }

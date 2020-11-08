@@ -39,6 +39,7 @@ class PostItem extends StatelessWidget {
               Hero(
                 tag: post.id,
                 child: CachedNetworkImage(
+                  fadeInDuration: Duration(milliseconds: 0),
                   progressIndicatorBuilder: (context, url, progress) {
                     return Container(
                       height: 200,

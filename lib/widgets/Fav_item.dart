@@ -31,6 +31,7 @@ class FavItem extends StatelessWidget {
                 child: Hero(
                   tag: post.id,
                   child: CachedNetworkImage(
+                    fadeInDuration: Duration(milliseconds: 0),
                     imageUrl: post.featuredMedia,
                     fit: BoxFit.cover,
                   ),
