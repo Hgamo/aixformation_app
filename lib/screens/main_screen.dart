@@ -56,7 +56,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     setState(() {
       pagei = index;
       _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+          duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
     });
   }
 
