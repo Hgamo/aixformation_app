@@ -81,6 +81,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             );
           }
           List<Post> favPosts = snapshot.data;
+          favPosts.sort((a, b) => b.date.compareTo(a.date));
           if (favPosts.length == 0) {
             return Center(
               child: Text('Es gibt keine Favoriten'),
