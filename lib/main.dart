@@ -30,11 +30,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         accentColor: HexColor('#4f6b54'),
       ),
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: white,
         accentColor: HexColor('#4f6b54'),

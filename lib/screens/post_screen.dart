@@ -112,7 +112,7 @@ class PostScreen extends StatelessWidget {
                                         text: strings[0],
                                         children: [
                                           TextSpan(
-                                            text: '|'+strings[1],
+                                            text: '|' + strings[1],
                                             style: GoogleFonts.ubuntu(
                                               textStyle: Theme.of(context)
                                                   .textTheme
@@ -121,7 +121,7 @@ class PostScreen extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),
