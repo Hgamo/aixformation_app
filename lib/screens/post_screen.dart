@@ -43,7 +43,7 @@ class PostScreen extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: Text('AiXformation'),
+              //title: Text('AiXformation'),
               background: Hero(
                 tag: post.id,
                 child: CachedNetworkImage(
@@ -62,8 +62,6 @@ class PostScreen extends StatelessWidget {
                     unescape.convert(post.title),
                     style: GoogleFonts.arvo(
                       textStyle: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        color: Theme.of(context).accentColor,
                         fontSize: 24,
                       ),
                     ),
@@ -73,6 +71,79 @@ class PostScreen extends StatelessWidget {
                   padding: EdgeInsets.all(18),
                   child: HtmlWidget(
                     post.contentHtml,
+                    webView: true,
+                    customWidgetBuilder: (element) {
+                      if (element.localName == 'ul') {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: HtmlWidget(
+                            element.outerHtml,
+                            textStyle: GoogleFonts.ubuntu(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      }
+                      if (element.className
+                          .contains('wp-block-lazyblock-einleitung')) {
+                        return HtmlWidget(
+                          element.innerHtml,
+                          customWidgetBuilder: (e) {
+                            if (e.className == 'aix-einleitung') {
+                              return HtmlWidget(
+                                e.innerHtml,
+                                customWidgetBuilder: (el) {
+                                  final List<String> strings =
+                                      el.text.split('|');
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 20),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.ubuntu(
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                              ),
+                                        ),
+                                        text: strings[0],
+                                        children: [
+                                          TextSpan(
+                                            text: '|'+strings[1],
+                                            style: GoogleFonts.ubuntu(
+                                              textStyle: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }
+                            return null;
+                          },
+                        );
+                      }
+                      if (element.localName == 'h4') {
+                        return Text(
+                          element.text,
+                          style: GoogleFonts.arvo(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        );
+                      }
+                      return null;
+                    },
                     onTapUrl: (url) => launch(
                       url,
                       option: CustomTabsOption(

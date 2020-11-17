@@ -52,8 +52,6 @@ class FavItem extends StatelessWidget {
                         HtmlUnescape().convert(post.title),
                         style: GoogleFonts.arvo(
                           textStyle: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            color: Theme.of(context).accentColor,
                             fontSize: 16,
                           ),
                         ),

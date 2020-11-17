@@ -36,34 +36,34 @@ class PostItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Hero(
-                tag: post.id,
-                child: CachedNetworkImage(
-                  fadeInDuration: Duration(milliseconds: 0),
-                  progressIndicatorBuilder: (context, url, progress) {
-                    return Container(
-                      height: 200,
-                    );
-                  },
-                  imageUrl: post.featuredMedia,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              CategoryName(
-                categories: post.categoriesId,
-                allcategories: categories,
+              Stack(
+                children: [
+                  Hero(
+                    tag: post.id,
+                    child: CachedNetworkImage(
+                      fadeInDuration: Duration(milliseconds: 0),
+                      progressIndicatorBuilder: (context, url, progress) {
+                        return Container(
+                          height: 200,
+                        );
+                      },
+                      imageUrl: post.featuredMedia,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  CategoryName(
+                    categories: post.categoriesId,
+                    allcategories: categories,
+                  ),
+                ],
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 5,
-                  right: 5,
-                ),
+                padding: const EdgeInsets.all(5),
                 child: Text(
                   unescape.convert(post.title),
                   style: GoogleFonts.arvo(
                     textStyle: TextStyle(
                       fontWeight: FontWeight.normal,
-                      color: Theme.of(context).accentColor,
                       fontSize: 24,
                     ),
                   ),

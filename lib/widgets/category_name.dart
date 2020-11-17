@@ -21,7 +21,7 @@ class CategoryName extends StatelessWidget {
       direction: Axis.horizontal,
       children: thiscategories
           .map((e) => Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.only(left: 4, right: 4),
                 child: CatText(HtmlUnescape().convert(e)),
               ))
           .toList(),

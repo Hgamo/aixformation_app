@@ -33,7 +33,7 @@ class FavButton extends StatelessWidget {
           onPressed: () {
             FavHelper.changefav(postId);
           },
-          color: isfav ? Colors.pink : Colors.grey,
+          color: isfav ? Theme.of(context).accentColor : Colors.grey,
         );
       },
     );

@@ -8,9 +8,12 @@ class CatText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
+      backgroundColor: Theme.of(context).accentColor,
       label: Text(
         cat,
-        style: GoogleFonts.ubuntu(),
+        style: GoogleFonts.ubuntu(
+          color: Colors.white,
+        ),
       ),
     );
   }
