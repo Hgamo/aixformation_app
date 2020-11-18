@@ -21,7 +21,7 @@ class PostScreen extends StatelessWidget {
           SliverAppBar(
             actions: [
               IconButton(
-                icon: Icon(Icons.open_in_browser),
+                icon: Icon(Icons.launch),
                 onPressed: () {
                   launch(
                     post.link,
