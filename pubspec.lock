@@ -79,7 +79,7 @@ packages:
     source: hosted
     version: "2.2.0"
   cloud_firestore_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
@@ -148,13 +148,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  data_connection_checker:
-    dependency: "direct main"
-    description:
-      name: data_connection_checker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.4"
   fake_async:
     dependency: transitive
     description:
@@ -198,7 +191,7 @@ packages:
     source: hosted
     version: "1.0.3"
   firebase_analytics_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_analytics_web
       url: "https://pub.dartlang.org"
@@ -219,7 +212,7 @@ packages:
     source: hosted
     version: "2.1.3"
   firebase_auth_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
@@ -240,7 +233,7 @@ packages:
     source: hosted
     version: "2.0.0"
   firebase_core_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
