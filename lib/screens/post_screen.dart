@@ -1,10 +1,8 @@
+import 'package:aixformation_app/widgets/post_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html_unescape/html_unescape.dart';
-//import 'package:url_launcher/url_launcher.dart';
-
 import '../classes/class_post.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:share/share.dart';
@@ -69,90 +67,7 @@ class PostScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(18),
-                  child: HtmlWidget(
-                    post.contentHtml,
-                    webView: true,
-                    customWidgetBuilder: (element) {
-                      if (element.localName == 'ul') {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: HtmlWidget(
-                            element.outerHtml,
-                            textStyle: GoogleFonts.ubuntu(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        );
-                      }
-                      if (element.className
-                          .contains('wp-block-lazyblock-einleitung')) {
-                        return HtmlWidget(
-                          element.innerHtml,
-                          customWidgetBuilder: (e) {
-                            if (e.className == 'aix-einleitung') {
-                              return HtmlWidget(
-                                e.innerHtml,
-                                customWidgetBuilder: (el) {
-                                  final List<String> strings =
-                                      el.text.split('|');
-                                  return Padding(
-                                    padding: const EdgeInsets.only(bottom: 20),
-                                    child: RichText(
-                                      text: TextSpan(
-                                        style: GoogleFonts.ubuntu(
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2
-                                              .copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .accentColor,
-                                              ),
-                                        ),
-                                        text: strings[0],
-                                        children: [
-                                          TextSpan(
-                                            text: '|' + strings[1],
-                                            style: GoogleFonts.ubuntu(
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2
-                                                  .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            }
-                            return null;
-                          },
-                        );
-                      }
-                      if (element.localName == 'h4') {
-                        return Text(
-                          element.text,
-                          style: GoogleFonts.arvo(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        );
-                      }
-                      return null;
-                    },
-                    onTapUrl: (url) => launch(
-                      url,
-                      option: CustomTabsOption(
-                        enableUrlBarHiding: true,
-                        showPageTitle: true,
-                      ),
-                    ),
-                    textStyle: GoogleFonts.ubuntu(),
-                  ),
+                  child: PostBody(post.contentHtml),
                 ),
               ],
             ),

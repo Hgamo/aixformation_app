@@ -5,11 +5,14 @@ import 'package:aixformation_app/helper/get_data.dart';
 import 'package:aixformation_app/screens/loading_screen.dart';
 import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Trace trace = FirebasePerformance.instance.newTrace('get_all_Data');
+    trace.start();
     AppStart.onAppStrat();
     return FutureBuilder(
       future: GetData().getallData(),
@@ -18,6 +21,7 @@ class MainScreen extends StatelessWidget {
           return LoadingScreen();
         }
         if (snapshot.connectionState == ConnectionState.done) {
+          trace.stop();
           return MainScaffold(
             snapshot: snapshot,
           );
@@ -38,27 +42,6 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int pagei = 0;
-  PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      pagei = index;
-      _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +82,11 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: pagei,
-        onTap: _onItemTapped,
+        onTap: (value) {
+          setState(() {
+            pagei = value;
+          });
+        },
         fixedColor: Theme.of(context).accentColor,
         items: [
           BottomNavigationBarItem(
@@ -116,15 +103,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         centerTitle: true,
         title: Text('AiXformation'),
       ),
-      body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          children: pages,
-          onPageChanged: (index) {
-            setState(() => pagei = index);
-          },
-        ),
-      ),
+      body: pages[pagei],
     );
   }
 }

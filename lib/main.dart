@@ -1,5 +1,8 @@
 import 'package:aixformation_app/wrapper.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -22,6 +25,8 @@ const MaterialColor white = const MaterialColor(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runApp(MyApp());
 }
 
@@ -53,6 +58,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: white,
         accentColor: HexColor('#4f6b54'),
       ),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
       title: 'AiXformation',
       home: Wrapper(),
     );
