@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
-  static loginAn() async{
+  static loginAn() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signInAnonymously();
   }
@@ -16,4 +16,6 @@ class Auth {
     FirebaseAuth auth = FirebaseAuth.instance;
     auth.signOut();
   }
+
+  static Stream<User> userStream = FirebaseAuth.instance.authStateChanges();
 }
