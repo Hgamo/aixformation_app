@@ -1,4 +1,3 @@
-import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FavHelper {
   static Future<bool> isFav(int postId) async {
     final firestore = FirebaseFirestore.instance;
-    User user = Auth.getAuthstae();
+    final User user = Auth().getAuthstate();
     final data = (await firestore.collection('fav').doc(user.uid).get()).data();
     if (data == null) {
       return false;
@@ -19,7 +18,7 @@ class FavHelper {
 
   static changefav(int postId) async {
     final firestore = FirebaseFirestore.instance;
-    User user = Auth.getAuthstae();
+    User user = Auth().getAuthstate();
     if (await isFav(postId)) {
       firestore.collection('fav').doc(user.uid).set(
         {postId.toString(): false},
@@ -33,13 +32,24 @@ class FavHelper {
     }
   }
 
-  static Future<List<Post>> getonlyfavs(List<Post> posts) async{
-    List<Post> favposts = [];
-    posts.forEach((element) async {
-      if (await FavHelper.isFav(element.id)) {
-        favposts.add(element);
+  static Stream<List<int>> get getFavsIds {
+    final firestore = FirebaseFirestore.instance;
+    final User user = Auth().getAuthstate();
+    return firestore
+        .collection('fav')
+        .doc(user.uid)
+        .snapshots()
+        .map(favIntsFromDocument);
+  }
+
+  static List<int> favIntsFromDocument(DocumentSnapshot snapshot) {
+    List<int> favints = [];
+    final data = snapshot.data();
+    data.forEach((key, value) {
+      if (value as bool) {
+        favints.add(int.parse(key));
       }
     });
-    return favposts;
+    return favints;
   }
 }

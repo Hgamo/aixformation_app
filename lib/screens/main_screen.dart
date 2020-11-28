@@ -1,86 +1,61 @@
 import 'package:aixformation_app/classes/class_post.dart';
-import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/fav_helper.dart';
-import 'package:aixformation_app/helper/get_data.dart';
-import 'package:aixformation_app/screens/loading_screen.dart';
+import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
-import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    Trace trace = FirebasePerformance.instance.newTrace('get_all_Data');
-    trace.start();
-    AppStart.onAppStrat();
-    return FutureBuilder(
-      future: GetData().getallData(),
-      builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return LoadingScreen();
-        }
-        if (snapshot.connectionState == ConnectionState.done) {
-          trace.stop();
-          return MainScaffold(
-            snapshot: snapshot,
-          );
-        }
-        return Container();
+  _MainScreenState createState() => _MainScreenState();
+}
+final List<Post> emptyPosts = [];
+final List<int> emptyints = [];
+class _MainScreenState extends State<MainScreen> {
+  
+  final List<Widget> pages = [
+    StreamBuilder(
+      initialData: emptyPosts,
+      stream: GetPosts.getPosts(),
+      builder: (context, AsyncSnapshot<List<Post>> snapshot) {
+        final posts = snapshot.data;
+        return ListView.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, index) => PostItem(
+            post: posts[index],
+          ),
+        );
       },
-    );
-  }
-}
-
-class MainScaffold extends StatefulWidget {
-  final AsyncSnapshot snapshot;
-  MainScaffold({this.snapshot});
-
-  @override
-  _MainScaffoldState createState() => _MainScaffoldState();
-}
-
-class _MainScaffoldState extends State<MainScaffold> {
+    ),
+    StreamBuilder(
+      stream: GetPosts.getPosts(),
+      initialData: emptyPosts,
+      builder: (context, AsyncSnapshot<List<Post>> snapshot) {
+        final List<Post> posts = snapshot.data;
+        return StreamBuilder(
+          stream: FavHelper.getFavsIds,
+          initialData: emptyints,
+          builder: (context, AsyncSnapshot<List<int>> snapshot) {
+            List<Post> favPosts = [];
+            snapshot.data.forEach((element) {
+              favPosts.add(posts.firstWhere((e) => e.id == element));
+            });
+            favPosts.sort((a, b) => b.date.compareTo(a.date));
+            return ListView.builder(
+              itemCount: favPosts.length,
+              itemBuilder: (context, index) => FavItem(favPosts[index]),
+            );
+          },
+        );
+      },
+    )
+  ];
   int pagei = 0;
-
   @override
   Widget build(BuildContext context) {
-    List<Post> posts = widget.snapshot.data['posts'];
-    List<Widget> pages = [
-      ListView.builder(
-        itemCount: posts.length,
-        itemBuilder: (context, index) => PostItem(
-          post: posts[index],
-          authors: widget.snapshot.data['authors'],
-          categories: widget.snapshot.data['categories'],
-        ),
-      ),
-      FutureBuilder(
-        future: FavHelper.getonlyfavs(posts),
-        builder: (context, AsyncSnapshot<List<Post>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          List<Post> favPosts = snapshot.data;
-          favPosts.sort((a, b) => b.date.compareTo(a.date));
-          if (favPosts.length == 0) {
-            return Center(
-              child: Text('Es gibt keine Favoriten'),
-            );
-          }
-          return ListView.builder(
-            itemCount: favPosts.length,
-            itemBuilder: (context, index) {
-              return FavItem(favPosts[index]);
-            },
-          );
-        },
-      )
-    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 1000,
         currentIndex: pagei,
         onTap: (value) {
           setState(() {

@@ -11,7 +11,7 @@ class FavButton extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('fav')
-          .doc(Auth.getAuthstae().uid)
+          .doc(Auth().getAuthstate().uid)
           .snapshots(),
       builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CatText extends StatelessWidget {
-  final String cat;
-  CatText(this.cat);
+  final String catName;
+  CatText(this.catName);
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      backgroundColor: Theme.of(context).accentColor,
-      label: Text(
-        cat,
-        style: GoogleFonts.ubuntu(
-          color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, right: 8),
+      child: Chip(
+        backgroundColor: Theme.of(context).accentColor,
+        label: Text(
+          catName,
+          style: GoogleFonts.ubuntu(
+            color: Colors.white,
+          ),
         ),
       ),
     );

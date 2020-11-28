@@ -1,5 +1,3 @@
-import 'package:aixformation_app/classes/author.dart';
-import 'package:aixformation_app/classes/category.dart';
 import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/my_time.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
@@ -13,10 +11,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
 
 class PostItem extends StatelessWidget {
-  final List<Author> authors;
-  final List<Category> categories;
   final Post post;
-  PostItem({this.post, this.authors, this.categories});
+  PostItem({
+    this.post,
+  });
   @override
   Widget build(BuildContext context) {
     var unescape = new HtmlUnescape();
@@ -52,8 +50,7 @@ class PostItem extends StatelessWidget {
                     ),
                   ),
                   CategoryName(
-                    categories: post.categoriesId,
-                    allcategories: categories,
+                    categoriesId: post.categoriesId,
                   ),
                 ],
               ),
@@ -83,12 +80,11 @@ class PostItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AuthorName(
-                      author: post.authorId,
-                      allauthors: authors,
+                      authorId: post.authorId,
                     ),
                     SizedBox(width: 5),
                     Text(
-                      dateToText(post.date),
+                      MyTime.dateToText(post.date),
                       style: GoogleFonts.ubuntu(),
                     ),
                     Spacer(),

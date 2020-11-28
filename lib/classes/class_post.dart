@@ -9,7 +9,7 @@ class Post {
   DateTime date;
   String link;
   int authorId;
-  List categoriesId;
+  List<int> categoriesId;
 
   Post({
     @required this.categoriesId,

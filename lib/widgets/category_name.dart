@@ -1,30 +1,34 @@
+import 'package:aixformation_app/classes/category.dart';
+import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/widgets/cat_text.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
 
 class CategoryName extends StatelessWidget {
-  final List categories;
-  final List allcategories;
-  CategoryName({this.categories, this.allcategories});
+  final List<int> categoriesId;
+  CategoryName({this.categoriesId});
 
   @override
   Widget build(BuildContext context) {
-    List thiscategories = [];
-    allcategories.forEach((element) {
-      if (categories.contains(element.id)) {
-        thiscategories.add(element.name);
-      }
-    });
-
     return Wrap(
-      alignment: WrapAlignment.start,
-      direction: Axis.horizontal,
-      children: thiscategories
-          .map((e) => Padding(
-                padding: const EdgeInsets.only(left: 4, right: 4),
-                child: CatText(HtmlUnescape().convert(e)),
-              ))
-          .toList(),
+      children: categoriesId.map((e) => CategoryText(e)).toList(),
+    );
+  }
+}
+
+class CategoryText extends StatelessWidget {
+  final int categoryId;
+  CategoryText(this.categoryId);
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: GetCategories.getCategoryById(categoryId),
+      builder: (context, AsyncSnapshot<Category> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return CatText(HtmlUnescape().convert(snapshot.data.name));
+        }
+        return Container();
+      },
     );
   }
 }

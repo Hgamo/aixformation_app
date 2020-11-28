@@ -57,7 +57,7 @@ class FavItem extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        dateToText(post.date),
+                        MyTime.dateToText(post.date),
                         style: GoogleFonts.ubuntu(),
                       ),
                     ],
