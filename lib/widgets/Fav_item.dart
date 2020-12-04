@@ -52,13 +52,16 @@ class FavItem extends StatelessWidget {
                         HtmlUnescape().convert(post.title),
                         style: GoogleFonts.arvo(
                           textStyle: TextStyle(
+                            height: 1.3,
                             fontSize: 16,
                           ),
                         ),
                       ),
                       Text(
                         MyTime.dateToText(post.date),
-                        style: GoogleFonts.ubuntu(),
+                        style: GoogleFonts.ubuntu(
+                          height: 1.5,
+                        ),
                       ),
                     ],
                   ),

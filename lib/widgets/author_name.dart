@@ -17,7 +17,9 @@ class AuthorName extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             snapshot.data,
-            style: GoogleFonts.ubuntu(),
+            style: GoogleFonts.ubuntu(
+              height: 1.5,
+            ),
           );
         }
         return Container();

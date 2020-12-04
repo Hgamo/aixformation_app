@@ -11,6 +11,7 @@ class PostBody extends StatelessWidget {
     return HtmlWidget(
       htmlString,
       webView: true,
+      webViewJs: true,
       customWidgetBuilder: (element) {
         if (element.localName == 'ul') {
           return Padding(
@@ -18,6 +19,7 @@ class PostBody extends StatelessWidget {
             child: HtmlWidget(
               element.outerHtml,
               textStyle: GoogleFonts.ubuntu(
+                height: 1.5,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -37,8 +39,10 @@ class PostBody extends StatelessWidget {
                       child: RichText(
                         text: TextSpan(
                           style: GoogleFonts.ubuntu(
+                            height: 1.5,
                             textStyle:
                                 Theme.of(context).textTheme.bodyText2.copyWith(
+                                      height: 1.5,
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context).accentColor,
                                     ),
@@ -48,10 +52,12 @@ class PostBody extends StatelessWidget {
                             TextSpan(
                               text: '|' + strings[1],
                               style: GoogleFonts.ubuntu(
+                                height: 1.5,
                                 textStyle: Theme.of(context)
                                     .textTheme
                                     .bodyText2
                                     .copyWith(
+                                      height: 1.5,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -73,6 +79,7 @@ class PostBody extends StatelessWidget {
             style: GoogleFonts.arvo(
               fontWeight: FontWeight.bold,
               fontSize: 16,
+              height: 1.5,
             ),
           );
         }
@@ -85,7 +92,9 @@ class PostBody extends StatelessWidget {
           showPageTitle: true,
         ),
       ),
-      textStyle: GoogleFonts.ubuntu(),
+      textStyle: GoogleFonts.ubuntu(
+        height: 1.5,
+      ),
     );
   }
 }

@@ -14,6 +14,7 @@ class CatText extends StatelessWidget {
         label: Text(
           catName,
           style: GoogleFonts.ubuntu(
+            height: 1.5,
             color: Colors.white,
           ),
         ),

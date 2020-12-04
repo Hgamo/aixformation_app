@@ -1,3 +1,4 @@
+import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'wrapper.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AppStart.onAppStrat();
     return MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
         pageTransitionsTheme: PageTransitionsTheme(

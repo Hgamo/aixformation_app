@@ -4,15 +4,17 @@ import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
+
 final List<Post> emptyPosts = [];
 final List<int> emptyints = [];
+
 class _MainScreenState extends State<MainScreen> {
-  
   final List<Widget> pages = [
     StreamBuilder(
       initialData: emptyPosts,
@@ -76,7 +78,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text('AiXformation'),
+        title: Text(
+          'AiXformation',
+          style: GoogleFonts.arvo(),
+        ),
       ),
       body: pages[pagei],
     );

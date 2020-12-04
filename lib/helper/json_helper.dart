@@ -38,7 +38,7 @@ class JsonHelper {
           featuredMedia: element['jetpack_featured_media_url'],
           contentHtml: element['content']['rendered'],
           excerptHtml: element['excerpt']['rendered'],
-          categoriesId: element['categories'],
+          categoriesId: element['categories'].cast<int>(),
         ),
       );
     });

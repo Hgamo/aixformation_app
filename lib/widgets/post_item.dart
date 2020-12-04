@@ -60,6 +60,7 @@ class PostItem extends StatelessWidget {
                   unescape.convert(post.title),
                   style: GoogleFonts.arvo(
                     textStyle: TextStyle(
+                      height: 1.3,
                       fontWeight: FontWeight.normal,
                       fontSize: 24,
                     ),
@@ -71,7 +72,9 @@ class PostItem extends StatelessWidget {
                 child: HtmlWidget(
                   post.excerptHtml,
                   hyperlinkColor: Theme.of(context).textTheme.bodyText2.color,
-                  textStyle: GoogleFonts.ubuntu(),
+                  textStyle: GoogleFonts.ubuntu(
+                    height: 1.5,
+                  ),
                 ),
               ),
               Padding(
@@ -85,7 +88,9 @@ class PostItem extends StatelessWidget {
                     SizedBox(width: 5),
                     Text(
                       MyTime.dateToText(post.date),
-                      style: GoogleFonts.ubuntu(),
+                      style: GoogleFonts.ubuntu(
+                        height: 1.5,
+                      ),
                     ),
                     Spacer(),
                     FavButton(post.id),

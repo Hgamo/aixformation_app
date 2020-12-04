@@ -60,6 +60,7 @@ class PostScreen extends StatelessWidget {
                     unescape.convert(post.title),
                     style: GoogleFonts.arvo(
                       textStyle: TextStyle(
+                        height: 1.3,
                         fontSize: 24,
                       ),
                     ),
