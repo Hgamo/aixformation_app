@@ -3,7 +3,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:aixformation_app/helper/json_helper.dart';
 
 class AppStart {
-  static void onAppStrat() async {
+  static Future onAppStrat() async {
     final firestore = FirebaseFirestore.instance;
 
     ConnectivityResult result = await Connectivity().checkConnectivity();
