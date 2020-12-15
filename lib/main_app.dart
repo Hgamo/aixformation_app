@@ -7,7 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'shared/color_white.dart';
 import 'wrapper.dart';
 
-class MyApp extends StatelessWidget {
+class AixformationApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppStart.onAppStrat();
