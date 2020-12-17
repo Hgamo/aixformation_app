@@ -48,7 +48,7 @@ class _InternetScreenState extends State<InternetScreen> {
             body: Container(),
           );
         }
-        if (!(result == ConnectivityResult.none)) {
+        if (result == ConnectivityResult.mobile || result == ConnectivityResult.wifi) {
           //mit dem Internet Verbunden
           Wrapper.login();
         }

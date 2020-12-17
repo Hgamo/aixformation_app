@@ -15,6 +15,7 @@ class AppStart {
     final int newestFirestoreId = idData.data()['newPost'];
     if (await JsonHelper.isnewestPost(newestFirestoreId)) {
       //Der neuste Post ist schon auf Firebase
+      print('Der neuste Post ist schon auf Firebase');
       return;
     } else {
       if (await JsonHelper.issecondnewestPost(newestFirestoreId)) {
