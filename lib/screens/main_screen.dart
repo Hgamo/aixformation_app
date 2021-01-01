@@ -1,10 +1,8 @@
-import 'package:aixformation_app/classes/class_post.dart';
 import 'package:aixformation_app/helper/app_Start.dart';
-import 'package:aixformation_app/helper/fav_helper.dart';
-import 'package:aixformation_app/helper/get_posts.dart';
+import 'package:aixformation_app/screens/settings_screen.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
-import 'package:aixformation_app/widgets/Fav_item.dart';
-import 'package:aixformation_app/widgets/post_item.dart';
+import 'package:aixformation_app/widgets/fav_posts.dart';
+import 'package:aixformation_app/widgets/home_posts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,58 +11,18 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-final List<Post> emptyPosts = [];
-final List<int> emptyints = [];
-
 class _MainScreenState extends State<MainScreen> {
-  final List<Widget> pages = [
-    StreamBuilder(
-      initialData: emptyPosts,
-      stream: GetPosts.getPosts(),
-      builder: (context, AsyncSnapshot<List<Post>> snapshot) {
-        final posts = snapshot.data;
-        return RefreshIndicator(
-          onRefresh: () async {
-            await AppStart.onAppStrat();
-          },
-          child: ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) => PostItem(
-              post: posts[index],
-            ),
-          ),
-        );
-      },
-    ),
-    StreamBuilder(
-      stream: GetPosts.getPosts(),
-      initialData: emptyPosts,
-      builder: (context, AsyncSnapshot<List<Post>> snapshot) {
-        final List<Post> posts = snapshot.data;
-        return StreamBuilder(
-          stream: FavHelper.getFavsIds,
-          initialData: emptyints,
-          builder: (context, AsyncSnapshot<List<int>> snapshot) {
-            List<Post> favPosts = [];
-            snapshot.data.forEach((element) {
-              favPosts.add(posts.firstWhere((e) => e.id == element));
-            });
-            favPosts.sort((a, b) => b.date.compareTo(a.date));
-            return ListView.builder(
-              itemCount: favPosts.length,
-              itemBuilder: (context, index) => FavItem(favPosts[index]),
-            );
-          },
-        );
-      },
-    )
-  ];
   int pagei = 0;
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      HomePosts(),
+      FavPosts(),
+      SettingsScreen(),
+    ];
+    AppStart.onAppStrat();
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 1000,
         currentIndex: pagei,
         onTap: (value) {
           setState(() {
@@ -79,7 +37,11 @@ class _MainScreenState extends State<MainScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorieten',
+            label: 'Favoriten',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Einstellungen'
           ),
         ],
       ),
@@ -90,6 +52,7 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 0) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    settings: RouteSettings(name: 'Über Uns Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'Über Uns',
                       url: 'https://aixmedia.org/aixformation/',
@@ -100,6 +63,7 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 1) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    settings: RouteSettings(name: 'Impressum Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'Impressum',
                       url: 'https://aixmedia.org/imprint/',
@@ -110,6 +74,7 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 2) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    settings: RouteSettings(name: 'Datenschutzerklärung Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'Datenschutzerklärung',
                       url: 'https://aixformation.de/datenschutzerklaerung/',
@@ -120,6 +85,7 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 3) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    settings: RouteSettings(name: 'Genderhinweis Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'Genderhinweis',
                       url: 'https://aixmedia.org/gender/',
@@ -130,6 +96,7 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 4) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    settings: RouteSettings(name: 'aix:media Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'aix:media',
                       url: 'https://aixmedia.org/',

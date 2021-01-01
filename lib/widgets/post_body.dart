@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -85,16 +84,6 @@ class PostBody extends StatelessWidget {
         }
         return null;
       },
-      onTapUrl: (url) => launch(
-        url,
-        option: CustomTabsOption(
-          enableUrlBarHiding: true,
-          showPageTitle: true,
-        ),
-      ),
-      textStyle: GoogleFonts.ubuntu(
-        height: 1.5,
-      ),
     );
   }
 }

@@ -1,6 +1,5 @@
-import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/screens/main_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:aixformation_app/screens/new_user_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +19,6 @@ class Wrapper extends StatelessWidget {
       },
     );
   }
-
-  static Future login() async {
-    await Auth().loginAn();
-    final firestore = FirebaseFirestore.instance;
-    await firestore.collection('fav').doc(Auth().getAuthstate().uid).set(
-      {},
-      SetOptions(merge: true),
-    );
-  }
 }
 
 class InternetScreen extends StatefulWidget {
@@ -43,38 +33,38 @@ class _InternetScreenState extends State<InternetScreen> {
       future: Connectivity().checkConnectivity(),
       builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
         final result = snapshot.data;
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Container(),
-          );
-        }
-        if (result == ConnectivityResult.mobile || result == ConnectivityResult.wifi) {
-          //mit dem Internet Verbunden
-          Wrapper.login();
-        }
-
-        return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Um mit der App zu starten, musst du mit dem Internet verbunden sein.',
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (result == ConnectivityResult.none) {
+            return Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Um mit der App zu starten, musst du mit dem Internet verbunden sein.',
+                    ),
+                    RaisedButton(
+                      color: Theme.of(context).accentColor,
+                      child: Text(
+                        'Erneut versuchen',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () => setState(() {}),
+                    ),
+                  ],
                 ),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Erneut versuchen',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () => setState(() {}),
-                ),
-              ],
-            ),
-          ),
-        );
+              ),
+            );
+          }
+          if (result == ConnectivityResult.mobile ||
+              result == ConnectivityResult.wifi) {
+            //mit dem Internet Verbunden
+            return NewUserScreen();
+          }
+        }
+        return Container();
       },
     );
   }

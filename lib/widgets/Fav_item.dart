@@ -16,6 +16,7 @@ class FavItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
+            settings: RouteSettings(name: 'Open Fav ${post.id}'),
             builder: (context) {
               return PostScreen(post);
             },

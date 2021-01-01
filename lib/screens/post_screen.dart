@@ -1,7 +1,7 @@
+import 'package:aixformation_app/shared/website_screen.dart';
 import 'package:aixformation_app/widgets/post_body.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html_unescape/html_unescape.dart';
 import '../classes/class_post.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,11 +21,14 @@ class PostScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.launch),
                 onPressed: () {
-                  launch(
-                    post.link,
-                    option: CustomTabsOption(
-                      enableUrlBarHiding: true,
-                      showPageTitle: true,
+                  Navigator.of(context).push(
+                    
+                    MaterialPageRoute(
+                      settings: RouteSettings(name: 'Open Post ${post.id} on Website'),
+                      builder: (context) => WebsiteScreen(
+                        title: post.title,
+                        url: post.link,
+                      ),
                     ),
                   );
                 },

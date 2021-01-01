@@ -6,7 +6,7 @@ import 'package:aixformation_app/widgets/category_name.dart';
 import 'package:aixformation_app/widgets/fav_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
 
@@ -23,6 +23,7 @@ class PostItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
+            settings: RouteSettings(name: 'Open Post ${post.id}'),
             builder: (context) {
               return PostScreen(post);
             },
@@ -68,13 +69,27 @@ class PostItem extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.only(left: 8, right: 8),
                 child: HtmlWidget(
                   post.excerptHtml,
                   hyperlinkColor: Theme.of(context).textTheme.bodyText2.color,
                   textStyle: GoogleFonts.ubuntu(
                     height: 1.5,
                   ),
+                  customWidgetBuilder: (element) {
+                    return HtmlWidget(
+                      element.innerHtml,
+                      customWidgetBuilder: (element) {
+                        return Text(
+                          element.innerHtml.split('<a')[0],
+                          style: GoogleFonts.ubuntu(
+                            height: 1.5,
+                          ),
+                          maxLines: 2,
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
               Padding(

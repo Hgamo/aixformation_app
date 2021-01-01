@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FavHelper {
   static Future<bool> isFav(int postId) async {
     final firestore = FirebaseFirestore.instance;
-    final User user = Auth().getAuthstate();
+    final User user = Auth.getAuthstate();
     final data = (await firestore.collection('fav').doc(user.uid).get()).data();
     if (data == null) {
       return false;
@@ -18,7 +18,7 @@ class FavHelper {
 
   static changefav(int postId) async {
     final firestore = FirebaseFirestore.instance;
-    User user = Auth().getAuthstate();
+    User user = Auth.getAuthstate();
     if (await isFav(postId)) {
       firestore.collection('fav').doc(user.uid).set(
         {postId.toString(): false},
@@ -34,7 +34,7 @@ class FavHelper {
 
   static Stream<List<int>> get getFavsIds {
     final firestore = FirebaseFirestore.instance;
-    final User user = Auth().getAuthstate();
+    final User user = Auth.getAuthstate();
     return firestore
         .collection('fav')
         .doc(user.uid)
