@@ -11,6 +11,7 @@ class PostBody extends StatelessWidget {
       htmlString,
       webView: true,
       webViewJs: true,
+      textStyle: GoogleFonts.ubuntu(),
       customWidgetBuilder: (element) {
         if (element.localName == 'ul') {
           return Padding(
@@ -72,7 +73,7 @@ class PostBody extends StatelessWidget {
             },
           );
         }
-        if (element.localName == 'h4') {
+        if (element.localName.contains('h')) {
           return Text(
             element.text,
             style: GoogleFonts.arvo(
@@ -80,6 +81,11 @@ class PostBody extends StatelessWidget {
               fontSize: 16,
               height: 1.5,
             ),
+          );
+        }
+        if (element.className.contains('wp-block-image')) {
+          return HtmlWidget(
+            element.innerHtml,
           );
         }
         return null;

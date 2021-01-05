@@ -4,7 +4,7 @@ import 'package:aixformation_app/helper/get_posts.dart';
 import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:flutter/material.dart';
 
-class FavPosts extends StatelessWidget {
+class FavFragment extends StatelessWidget {
   final List<int> emptyints = [];
   final List<Post> emptyPosts = [];
   @override

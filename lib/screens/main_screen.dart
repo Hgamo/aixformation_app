@@ -1,8 +1,8 @@
 import 'package:aixformation_app/helper/app_Start.dart';
-import 'package:aixformation_app/screens/settings_screen.dart';
+import 'package:aixformation_app/widgets/fragments/settings_fragment.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
-import 'package:aixformation_app/widgets/fav_posts.dart';
-import 'package:aixformation_app/widgets/home_posts.dart';
+import 'package:aixformation_app/widgets/fragments/fav_fragment.dart';
+import 'package:aixformation_app/widgets/fragments/home_fragment.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,9 +16,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      HomePosts(),
-      FavPosts(),
-      SettingsScreen(),
+      HomeFragment(),
+      FavFragment(),
+      SettingsFragment(),
     ];
     AppStart.onAppStrat();
     return Scaffold(
@@ -40,9 +40,7 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Favoriten',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Einstellungen'
-          ),
+              icon: Icon(Icons.settings), label: 'Einstellungen'),
         ],
       ),
       appBar: AppBar(
@@ -63,28 +61,6 @@ class _MainScreenState extends State<MainScreen> {
               if (value == 1) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    settings: RouteSettings(name: 'Impressum Screen'),
-                    builder: (context) => WebsiteScreen(
-                      title: 'Impressum',
-                      url: 'https://aixmedia.org/imprint/',
-                    ),
-                  ),
-                );
-              }
-              if (value == 2) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    settings: RouteSettings(name: 'Datenschutzerklärung Screen'),
-                    builder: (context) => WebsiteScreen(
-                      title: 'Datenschutzerklärung',
-                      url: 'https://aixformation.de/datenschutzerklaerung/',
-                    ),
-                  ),
-                );
-              }
-              if (value == 3) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
                     settings: RouteSettings(name: 'Genderhinweis Screen'),
                     builder: (context) => WebsiteScreen(
                       title: 'Genderhinweis',
@@ -93,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 );
               }
-              if (value == 4) {
+              if (value == 2) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     settings: RouteSettings(name: 'aix:media Screen'),
@@ -116,26 +92,12 @@ class _MainScreenState extends State<MainScreen> {
               PopupMenuItem(
                 value: 1,
                 child: Text(
-                  'Impressum',
-                  style: GoogleFonts.ubuntu(),
-                ),
-              ),
-              PopupMenuItem(
-                value: 2,
-                child: Text(
-                  'Datenschutzerklärung',
-                  style: GoogleFonts.ubuntu(),
-                ),
-              ),
-              PopupMenuItem(
-                value: 3,
-                child: Text(
                   'Genderhinweis',
                   style: GoogleFonts.ubuntu(),
                 ),
               ),
               PopupMenuItem(
-                value: 4,
+                value: 2,
                 child: Text(
                   'aix:media',
                   style: GoogleFonts.ubuntu(),

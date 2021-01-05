@@ -19,7 +19,11 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var unescape = new HtmlUnescape();
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.only(
+        left: 2,
+        right: 2,
+        bottom: 5,
+      ),
       child: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
