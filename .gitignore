@@ -46,3 +46,4 @@ app.*.map.json
 
 #my Own edits
 /.vscode/
+/firebase_linking/

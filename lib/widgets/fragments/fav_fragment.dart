@@ -14,7 +14,7 @@ class FavFragment extends StatelessWidget {
       initialData: emptyPosts,
       builder: (context, AsyncSnapshot<List<Post>> snapshot) {
         final List<Post> posts = snapshot.data;
-        return StreamBuilder(
+        return StreamBuilder<List<int>>(
           stream: FavHelper.getFavsIds,
           initialData: emptyints,
           builder: (context, AsyncSnapshot<List<int>> snapshot) {

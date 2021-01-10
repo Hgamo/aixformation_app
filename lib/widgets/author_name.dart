@@ -1,6 +1,7 @@
-import 'package:aixformation_app/helper/get_authors.dart';
+import 'package:aixformation_app/classes/author.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class AuthorName extends StatelessWidget {
   final int authorId;
@@ -11,19 +12,14 @@ class AuthorName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: GetAuthors.getAuthorNameById(authorId),
-      builder: (context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Text(
-            snapshot.data,
-            style: GoogleFonts.ubuntu(
-              height: 1.5,
-            ),
-          );
-        }
-        return Container();
-      },
+    final authors = Provider.of<List<Author>>(context);
+    final String authorName =
+        authors.firstWhere((element) => element.id == authorId).name;
+    return Text(
+      authorName,
+      style: GoogleFonts.ubuntu(
+        height: 1.5,
+      ),
     );
   }
 }

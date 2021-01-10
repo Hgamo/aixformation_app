@@ -5,6 +5,7 @@ import 'package:aixformation_app/widgets/author_name.dart';
 import 'package:aixformation_app/widgets/category_name.dart';
 import 'package:aixformation_app/widgets/fav_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,8 +13,10 @@ import 'package:html_unescape/html_unescape.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
+  final bool isnewesPost;
   PostItem({
     this.post,
+    this.isnewesPost,
   });
   @override
   Widget build(BuildContext context) {
@@ -25,14 +28,19 @@ class PostItem extends StatelessWidget {
         bottom: 5,
       ),
       child: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            settings: RouteSettings(name: 'Open Post ${post.id}'),
-            builder: (context) {
-              return PostScreen(post);
-            },
-          ),
-        ),
+        onTap: () {
+          if (isnewesPost) {
+            FirebaseAnalytics().logEvent(name: 'open_newest_post');
+          }
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              settings: RouteSettings(name: 'PostScreen ${post.id}'),
+              builder: (context) {
+                return PostScreen(post);
+              },
+            ),
+          );
+        },
         child: Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

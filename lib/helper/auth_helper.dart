@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -48,16 +49,17 @@ class Auth {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final firestore = FirebaseFirestore.instance;
     await firestore.collection('fav').doc(Auth.getAuthstate().uid).delete();
+    FirebaseAnalytics().resetAnalyticsData();
     auth.currentUser.delete();
   }
 
-  static Future<bool> emailExists(String email) async {
-    final auth = FirebaseAuth.instance;
-    try {
-      await auth.fetchSignInMethodsForEmail(email);
-    } on Exception catch (_) {
-      return false;
-    }
-    return true;
-  }
+  // static Future<bool> emailExists(String email) async {
+  //   final auth = FirebaseAuth.instance;
+  //   try {
+  //     await auth.fetchSignInMethodsForEmail(email);
+  //   } on Exception catch (_) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 }

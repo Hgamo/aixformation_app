@@ -33,6 +33,7 @@ class HomeFragment extends StatelessWidget {
                     );
                   }
                   return PostItem(
+                    isnewesPost: index==1,
                     post: posts[index-1],
                   );
                 },

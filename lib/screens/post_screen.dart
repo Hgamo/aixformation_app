@@ -1,5 +1,6 @@
 import 'package:aixformation_app/shared/website_screen.dart';
 import 'package:aixformation_app/widgets/post_body.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -10,7 +11,7 @@ import 'package:share/share.dart';
 class PostScreen extends StatelessWidget {
   PostScreen(this.post);
   final Post post;
-  final unescape = new HtmlUnescape();
+  final unescape = HtmlUnescape();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +23,9 @@ class PostScreen extends StatelessWidget {
                 icon: Icon(Icons.launch),
                 onPressed: () {
                   Navigator.of(context).push(
-                    
                     MaterialPageRoute(
-                      settings: RouteSettings(name: 'Open Post ${post.id} on Website'),
+                      settings:
+                          RouteSettings(name: 'WebsiteScreen Post ${post.id}'),
                       builder: (context) => WebsiteScreen(
                         title: post.title,
                         url: post.link,
@@ -36,6 +37,11 @@ class PostScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.share),
                 onPressed: () {
+                  FirebaseAnalytics().logShare(
+                    contentType: 'post',
+                    itemId: post.id.toString(),
+                    method: 'standard',
+                  );
                   Share.share(post.link);
                 },
               ),

@@ -1,5 +1,6 @@
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:auth_buttons/auth_buttons.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -52,16 +53,24 @@ class _NewUserScreenState extends State<NewUserScreen> {
             Column(
               children: [
                 GoogleAuthButton(
-                  onPressed: () {
-                    Auth.logInWithGoogle();
+                  onPressed: () async {
+                    await Auth.logInWithGoogle();
+                    FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
+                    FirebaseAnalytics().setUserProperty(
+                        name: 'login_methode', value: 'Google');
+                    FirebaseAnalytics().logLogin();
                   },
                   darkMode: MediaQuery.of(context).platformBrightness ==
                       Brightness.dark,
                 ),
                 MaterialButton(
                   child: Text('Ohne E-Mail Adresse fortfahren'),
-                  onPressed: () {
-                    Auth.logInAny();
+                  onPressed: () async {
+                    await Auth.logInAny();
+                    FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
+                    FirebaseAnalytics()
+                        .setUserProperty(name: 'login_methode', value: 'any');
+                    FirebaseAnalytics().logLogin();
                   },
                 ),
               ],
