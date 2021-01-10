@@ -11,14 +11,13 @@ class PostBody extends StatelessWidget {
       htmlString,
       webView: true,
       webViewJs: true,
-      textStyle: GoogleFonts.ubuntu(),
       customWidgetBuilder: (element) {
         if (element.localName == 'ul') {
           return Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: HtmlWidget(
               element.outerHtml,
-              textStyle: GoogleFonts.ubuntu(
+              textStyle: TextStyle(
                 height: 1.5,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,29 +37,22 @@ class PostBody extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 20),
                       child: RichText(
                         text: TextSpan(
-                          style: GoogleFonts.ubuntu(
-                            height: 1.5,
-                            textStyle:
-                                Theme.of(context).textTheme.bodyText2.copyWith(
-                                      height: 1.5,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).accentColor,
-                                    ),
-                          ),
+                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                                height: 1.5,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).accentColor,
+                              ),
                           text: strings[0],
                           children: [
                             TextSpan(
                               text: '|' + strings[1],
-                              style: GoogleFonts.ubuntu(
-                                height: 1.5,
-                                textStyle: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    .copyWith(
-                                      height: 1.5,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  .copyWith(
+                                    height: 1.5,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ],
                         ),

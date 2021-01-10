@@ -7,30 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 String email;
 String password;
 
-class NewUserScreen extends StatefulWidget {
-  @override
-  _NewUserScreenState createState() => _NewUserScreenState();
-}
-
-class _NewUserScreenState extends State<NewUserScreen> {
-  bool aix = false;
-  bool done = false;
-
-  void newState() async {
-    await Future.delayed(Duration(seconds: 1));
-    setState(() {
-      aix = true;
-    });
-  }
-
-  @override
-  void initState() {
-    newState();
-    super.initState();
-  }
-
-  @override
-  @override
+class NewUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -40,14 +17,10 @@ class _NewUserScreenState extends State<NewUserScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AnimatedOpacity(
-              opacity: aix ? 1 : 0,
-              duration: Duration(seconds: 2),
-              child: Text(
-                'AiXformation',
-                style: GoogleFonts.arvo(
-                  fontSize: 40,
-                ),
+            Text(
+              'AiXformation',
+              style: GoogleFonts.arvo(
+                fontSize: 40,
               ),
             ),
             Column(

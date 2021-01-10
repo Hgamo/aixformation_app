@@ -1,3 +1,4 @@
+import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/screens/main_screen.dart';
 import 'package:aixformation_app/screens/new_user_screen.dart';
 import 'package:connectivity/connectivity.dart';
@@ -14,6 +15,7 @@ class Wrapper extends StatelessWidget {
           //noch nicht eingelogt
           return InternetScreen();
         }
+        AppStart.onAppStrat();
         //eingelogt direkt zum MainScreen
         return MainScreen();
       },

@@ -113,12 +113,7 @@ class PostItem extends StatelessWidget {
                       authorId: post.authorId,
                     ),
                     SizedBox(width: 5),
-                    Text(
-                      MyTime.dateToText(post.date),
-                      style: GoogleFonts.ubuntu(
-                        height: 1.5,
-                      ),
-                    ),
+                    Text(MyTime.dateToText(post.date)),
                     Spacer(),
                     FavButton(post.id),
                   ],

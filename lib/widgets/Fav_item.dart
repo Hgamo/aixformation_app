@@ -23,7 +23,7 @@ class FavItem extends StatelessWidget {
           ),
         ),
         child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
+          clipBehavior: Clip.hardEdge,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Row(
             children: [
@@ -58,12 +58,7 @@ class FavItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
-                        MyTime.dateToText(post.date),
-                        style: GoogleFonts.ubuntu(
-                          height: 1.5,
-                        ),
-                      ),
+                      Text(MyTime.dateToText(post.date)),
                     ],
                   ),
                 ),

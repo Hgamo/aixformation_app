@@ -7,6 +7,6 @@ class RemoteConfigHelper {
     await remoteConfig.fetch(expiration: const Duration(hours: 12));
     await remoteConfig.activateFetched();
     final response = remoteConfig.getBool('blur_buttons');
-    return response;
+    return response??true;
   }
 }

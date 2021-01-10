@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CatText extends StatelessWidget {
   final String catName;
@@ -13,10 +12,7 @@ class CatText extends StatelessWidget {
         backgroundColor: Theme.of(context).accentColor,
         label: Text(
           catName,
-          style: GoogleFonts.ubuntu(
-            height: 1.5,
-            color: Colors.white,
-          ),
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

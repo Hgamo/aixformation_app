@@ -30,7 +30,7 @@ class SettingsFragment extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Text(
-          user.displayName ?? user.uid,
+          user.isAnonymous ? user.uid : user.displayName,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 10),
@@ -41,7 +41,7 @@ class SettingsFragment extends StatelessWidget {
         Divider(),
         ListTile(
           leading: Icon(Icons.info),
-          title: Text('App Info'),
+          title: Text('Lizenzen'),
           onTap: () => showLicensePage(context: context),
         ),
         Divider(),
