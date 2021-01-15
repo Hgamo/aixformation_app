@@ -6,7 +6,7 @@ class GetPosts {
     final firestore = FirebaseFirestore.instance;
     return firestore
         .collection('posts')
-        .orderBy('date', descending: true)
+        .orderBy('date', descending: true).limit(20)
         .snapshots()
         .map(fromSnapshotToList);
   }

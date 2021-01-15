@@ -1,4 +1,5 @@
 import 'package:aixformation_app/shared/website_screen.dart';
+import 'package:aixformation_app/widgets/comments_widget.dart';
 import 'package:aixformation_app/widgets/post_body.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        cacheExtent: 1000000,
         slivers: <Widget>[
           SliverAppBar(
             actions: [
@@ -27,8 +29,8 @@ class PostScreen extends StatelessWidget {
                       settings:
                           RouteSettings(name: 'WebsiteScreen Post ${post.id}'),
                       builder: (context) => WebsiteScreen(
-                        title: post.title,
-                        url: post.link,
+                        title: unescape.convert(post.title),
+                        url: post.link + '?amp',
                       ),
                     ),
                   );
@@ -64,7 +66,7 @@ class PostScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(20),
                   child: Text(
                     unescape.convert(post.title),
                     style: GoogleFonts.arvo(
@@ -76,8 +78,12 @@ class PostScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(18),
+                  padding: EdgeInsets.all(20),
                   child: PostBody(post.contentHtml),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: CommentsWidget(post),
                 ),
               ],
             ),

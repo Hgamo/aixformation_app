@@ -13,18 +13,18 @@ class FavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
-      child: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            settings: RouteSettings(name: 'FavScreen ${post.id}'),
-            builder: (context) {
-              return PostScreen(post);
-            },
+      child: Card(
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              settings: RouteSettings(name: 'FavScreen ${post.id}'),
+              builder: (context) {
+                return PostScreen(post);
+              },
+            ),
           ),
-        ),
-        child: Card(
-          clipBehavior: Clip.hardEdge,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Row(
             children: [
               Flexible(

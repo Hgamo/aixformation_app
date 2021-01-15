@@ -27,23 +27,23 @@ class PostItem extends StatelessWidget {
         right: 2,
         bottom: 5,
       ),
-      child: GestureDetector(
-        onTap: () {
-          if (isnewesPost) {
-            FirebaseAnalytics().logEvent(name: 'open_newest_post');
-          }
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              settings: RouteSettings(name: 'PostScreen ${post.id}'),
-              builder: (context) {
-                return PostScreen(post);
-              },
-            ),
-          );
-        },
-        child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      child: Card(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        child: InkWell(
+          onTap: () {
+            if (isnewesPost) {
+              FirebaseAnalytics().logEvent(name: 'open_newest_post');
+            }
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                settings: RouteSettings(name: 'PostScreen ${post.id}'),
+                builder: (context) {
+                  return PostScreen(post);
+                },
+              ),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeFragment extends StatelessWidget {
-  final List<Post> emptyPosts = [];
   @override
   Widget build(BuildContext context) {
     final List<Post> posts = Provider.of<List<Post>>(context) ?? [];
@@ -39,7 +38,7 @@ class HomeFragment extends StatelessWidget {
           initialData: true,
           future: RemoteConfigHelper.blurButtons(),
           builder: (context, AsyncSnapshot<bool> snapshot) {
-            return snapshot.data ?? true
+            return snapshot.data
                 ? Container(
                     child: ClipRect(
                       child: BackdropFilter(
