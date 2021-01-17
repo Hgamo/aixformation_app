@@ -6,7 +6,8 @@ class GetPosts {
     final firestore = FirebaseFirestore.instance;
     return firestore
         .collection('posts')
-        .orderBy('date', descending: true).limit(20)
+        .orderBy('date', descending: true)
+        .limit(20)
         .snapshots()
         .map(fromSnapshotToList);
   }
@@ -31,5 +32,14 @@ class GetPosts {
       );
     });
     return posts;
+  }
+
+  static Future<Post> getPostById(int postId) async {
+    final firestore = FirebaseFirestore.instance;
+    final posts = fromSnapshotToList(await firestore
+        .collection('posts')
+        .where('id', isEqualTo: postId)
+        .get());
+    return posts[0];
   }
 }
