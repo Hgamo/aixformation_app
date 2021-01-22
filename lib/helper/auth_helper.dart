@@ -1,7 +1,9 @@
+import 'package:aixformation_app/shared/auth_status_enum.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import './auth_state_helper.dart';
 
 class Auth {
   static User getAuthstate() {
@@ -25,6 +27,32 @@ class Auth {
 
   static signOut() {
     FirebaseAuth.instance.signOut();
+  }
+
+  static Future<AuthResultStatus> logInEandP(
+      {String eMail, String password}) async {
+    final _auth = FirebaseAuth.instance;
+    AuthResultStatus _status;
+
+    try {
+      final methods = await _auth.fetchSignInMethodsForEmail(eMail);
+      final authResult = methods.isEmpty
+          ? await _auth.createUserWithEmailAndPassword(
+              email: eMail, password: password)
+          : await _auth.signInWithEmailAndPassword(
+              email: eMail, password: password);
+
+      if (authResult.user != null) {
+        _status = AuthResultStatus.successful;
+        await Auth.newUser();
+      } else {
+        _status = AuthResultStatus.undefined;
+      }
+    } catch (e) {
+      print('Exception @createAccount: $e');
+      _status = AuthExceptionHandler.handleException(e);
+    }
+    return _status;
   }
 
   static logInWithGoogle() async {

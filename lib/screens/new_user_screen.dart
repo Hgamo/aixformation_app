@@ -3,6 +3,7 @@ import 'package:auth_buttons/auth_buttons.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:aixformation_app/screens/e-mail_screen.dart';
 
 String email;
 String password;
@@ -26,6 +27,7 @@ class NewUserScreen extends StatelessWidget {
             Column(
               children: [
                 GoogleAuthButton(
+                  borderRadius: 10,
                   onPressed: () async {
                     await Auth.logInWithGoogle();
                     FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
@@ -36,14 +38,32 @@ class NewUserScreen extends StatelessWidget {
                   darkMode: MediaQuery.of(context).platformBrightness ==
                       Brightness.dark,
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  color: Theme.of(context).accentColor,
+                  textColor: Colors.white,
+                  child: Text('Mit E-Mail Adresse Einloggen'),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EMailScreen(),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
+                ),
                 MaterialButton(
                   child: Text('Ohne E-Mail Adresse fortfahren'),
                   onPressed: () async {
-                    await Auth.logInAny();
-                    FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
-                    FirebaseAnalytics()
-                        .setUserProperty(name: 'login_methode', value: 'any');
-                    FirebaseAnalytics().logLogin();
+                    showDialog(
+                      context: context,
+                      builder: (context) => AnyDialog(),
+                    );
                   },
                 ),
               ],
@@ -52,5 +72,52 @@ class NewUserScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class AnyDialog extends StatefulWidget {
+  @override
+  _AnyDialogState createState() => _AnyDialogState();
+}
+
+class _AnyDialogState extends State<AnyDialog> {
+  bool isLoading = false;
+  @override
+  Widget build(BuildContext context) {
+    return isLoading
+        ? Dialog(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : AlertDialog(
+            title: Text('Achtung'),
+            content: Text(
+                'Wenn du dich ohne E-Mail Adresse angemeldest, können deine Daten nicht wiederhergestellt werden.'),
+            actions: [
+              MaterialButton(
+                textColor: Theme.of(context).errorColor,
+                child: Text('Trotzdem fortfahren'),
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  await Auth.logInAny();
+                  FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
+                  FirebaseAnalytics()
+                      .setUserProperty(name: 'login_methode', value: 'any');
+                  FirebaseAnalytics().logLogin();
+                  Navigator.pop(context);
+                },
+              ),
+              MaterialButton(
+                textColor: Theme.of(context).accentColor,
+                child: Text('Abbrechen'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
   }
 }

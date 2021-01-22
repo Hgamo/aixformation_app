@@ -1,6 +1,7 @@
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class SettingsFragment extends StatelessWidget {
@@ -22,16 +23,38 @@ class SettingsFragment extends StatelessWidget {
                     Icons.person,
                     size: 50,
                   )
-                : Image.network(
-                    user.photoURL,
-                    fit: BoxFit.cover,
-                  ),
+                : user.photoURL == null
+                    ? Icon(
+                        Icons.person,
+                        size: 50,
+                      )
+                    : Image.network(
+                        user.photoURL,
+                        fit: BoxFit.cover,
+                      ),
           ),
         ),
         SizedBox(height: 10),
-        Text(
-          user.isAnonymous ? user.uid : user.displayName,
-          textAlign: TextAlign.center,
+        GestureDetector(
+          onLongPress: () async {
+            final token = await FirebaseMessaging.instance.getToken();
+            showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                child: SelectableText(
+                  token,
+                  toolbarOptions: ToolbarOptions(
+                    copy: true,
+                    selectAll: true,
+                  ),
+                ),
+              ),
+            );
+          },
+          child: Text(
+            user.displayName ?? user.uid,
+            textAlign: TextAlign.center,
+          ),
         ),
         SizedBox(height: 10),
         Text(
@@ -79,7 +102,9 @@ class SettingsFragment extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.logout),
           title: Text('Logout'),
-          onTap: () => Auth.signOut(),
+          onTap: () => Auth.getAuthstate().isAnonymous
+              ? Auth.deleteForever()
+              : Auth.signOut(),
         ),
         ListTile(
           leading: Icon(Icons.delete_forever),
