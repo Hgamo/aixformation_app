@@ -40,8 +40,8 @@ class CommentsWidget extends StatelessWidget {
                     .map(
                       (e) => Column(
                         children: [
-                          Divider(),
                           CommentItem(e),
+                          Divider(),
                         ],
                       ),
                     )

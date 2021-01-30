@@ -32,6 +32,11 @@ def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
+rootProject.ext {
+  set('FlutterFire', [
+    FirebaseSDKVersion: '26.3.0'
+  ])
+}
 
 android {
     compileSdkVersion 30

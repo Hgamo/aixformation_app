@@ -1,10 +1,16 @@
+import 'package:aixformation_app/classes/author.dart';
+import 'package:aixformation_app/helper/my_time.dart';
+import 'package:aixformation_app/helper/remote_config_helper.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
+import 'package:aixformation_app/widgets/author_name.dart';
+import 'package:aixformation_app/widgets/author_widget.dart';
 import 'package:aixformation_app/widgets/comments_widget.dart';
+import 'package:aixformation_app/widgets/fav_button.dart';
 import 'package:aixformation_app/widgets/post_body.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
+import 'package:provider/provider.dart';
 import '../classes/class_post.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:share/share.dart';
@@ -49,10 +55,8 @@ class PostScreen extends StatelessWidget {
               ),
             ],
             expandedHeight: MediaQuery.of(context).size.height / 3,
-            pinned: true,
+            pinned: context.watch<RemoteConfigHelper>().pinnedAppBar(),
             flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              //title: Text('AiXformation'),
               background: Hero(
                 tag: post.id,
                 child: CachedNetworkImage(
@@ -66,23 +70,42 @@ class PostScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    unescape.convert(post.title),
-                    style: GoogleFonts.arvo(
-                      textStyle: TextStyle(
-                        height: 1.3,
-                        fontSize: 24,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    //alignment: WrapAlignment.,
+                    //mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      AuthorName(
+                        authorId: post.authorId,
                       ),
-                    ),
+                      SizedBox(width: 5),
+                      Text(MyTime.dateToText(post.date)),
+                      FavButton(post.id),
+                    ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(20),
-                  child: PostBody(post.contentHtml),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  child: Text(
+                    unescape.convert(post.title),
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: PostBody(post.contentHtml),
+                ),
+                AuthorWidget(
+                  context.watch<List<Author>>().firstWhere(
+                        (element) => element.id == post.authorId,
+                        orElse: () => Author(),
+                      ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: CommentsWidget(post),
                 ),
               ],

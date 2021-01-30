@@ -3,7 +3,6 @@ import 'package:aixformation_app/helper/my_time.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
 
 class FavItem extends StatelessWidget {
@@ -13,7 +12,8 @@ class FavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
-      child: Card(
+      child: Material(
+        elevation: 5,
         clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: InkWell(
@@ -27,7 +27,7 @@ class FavItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Flexible(
+              Expanded(
                 flex: 2,
                 child: Hero(
                   tag: post.id,
@@ -51,12 +51,7 @@ class FavItem extends StatelessWidget {
                     children: [
                       Text(
                         HtmlUnescape().convert(post.title),
-                        style: GoogleFonts.arvo(
-                          textStyle: TextStyle(
-                            height: 1.3,
-                            fontSize: 16,
-                          ),
-                        ),
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                       Text(MyTime.dateToText(post.date)),
                     ],

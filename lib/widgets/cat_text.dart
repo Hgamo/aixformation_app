@@ -9,10 +9,11 @@ class CatText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: Chip(
+        elevation: 5,
         backgroundColor: Theme.of(context).accentColor,
         label: Text(
           catName,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, height: 1),
         ),
       ),
     );

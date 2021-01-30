@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Post {
   String contentHtml;
   String featuredMedia;
@@ -12,14 +10,14 @@ class Post {
   List<int> categoriesId;
 
   Post({
-    @required this.categoriesId,
-    @required this.authorId,
-    @required this.title,
-    @required this.id,
-    @required this.date,
-    @required this.link,
-    @required this.featuredMedia,
-    @required this.contentHtml,
-    @required this.excerptHtml,
+    this.categoriesId,
+    this.authorId,
+    this.title,
+    this.id,
+    this.date,
+    this.link,
+    this.featuredMedia,
+    this.contentHtml,
+    this.excerptHtml,
   });
 }

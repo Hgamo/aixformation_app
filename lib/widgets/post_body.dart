@@ -17,10 +17,10 @@ class PostBody extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20),
             child: HtmlWidget(
               element.outerHtml,
-              textStyle: TextStyle(
-                height: 1.5,
-                fontWeight: FontWeight.bold,
-              ),
+              textStyle: Theme.of(context).textTheme.bodyText1.copyWith(
+                    fontWeight: FontWeight.bold,
+                    height: 1.3,
+                  ),
             ),
           );
         }
@@ -38,7 +38,6 @@ class PostBody extends StatelessWidget {
                       child: RichText(
                         text: TextSpan(
                           style: Theme.of(context).textTheme.bodyText2.copyWith(
-                                height: 1.5,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).accentColor,
                               ),
@@ -50,7 +49,6 @@ class PostBody extends StatelessWidget {
                                   .textTheme
                                   .bodyText2
                                   .copyWith(
-                                    height: 1.5,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),

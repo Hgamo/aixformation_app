@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebsiteScreen extends StatefulWidget {
@@ -19,10 +18,10 @@ class _WebsiteScreenState extends State<WebsiteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        textTheme: Theme.of(context).textTheme,
         centerTitle: true,
         title: Text(
           widget.title,
-          style: GoogleFonts.arvo(),
         ),
       ),
       body: Stack(

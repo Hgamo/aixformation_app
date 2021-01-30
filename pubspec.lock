@@ -267,6 +267,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  firebase_dynamic_links:
+    dependency: "direct main"
+    description:
+      name: firebase_dynamic_links
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0+1"
   firebase_in_app_messaging:
     dependency: "direct main"
     description:
@@ -341,7 +348,7 @@ packages:
       name: flutter_layout_grid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.3"
+    version: "0.10.5"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -384,7 +391,7 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -602,6 +609,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  rki_corona_api:
+    dependency: "direct main"
+    description:
+      name: rki_corona_api
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   rxdart:
     dependency: transitive
     description:
@@ -648,7 +662,7 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.3+1"
   stack_trace:
     dependency: transitive
     description:
