@@ -2,12 +2,13 @@ import 'package:aixformation_app/screens/main_screen.dart';
 import 'package:aixformation_app/screens/new_user_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<User>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, AsyncSnapshot<User> snapshot) {
         if (snapshot.data == null) {
@@ -15,6 +16,7 @@ class Wrapper extends StatelessWidget {
           return InternetScreen();
         }
         //eingelogt direkt zum MainScreen
+        FirebaseCrashlytics.instance.setUserIdentifier(snapshot.data.uid);
         return MainScreen();
       },
     );
@@ -29,7 +31,7 @@ class InternetScreen extends StatefulWidget {
 class _InternetScreenState extends State<InternetScreen> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<ConnectivityResult>(
       future: Connectivity().checkConnectivity(),
       builder: (context, AsyncSnapshot<ConnectivityResult> snapshot) {
         final result = snapshot.data;
