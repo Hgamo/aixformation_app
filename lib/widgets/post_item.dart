@@ -29,7 +29,7 @@ class PostItem extends StatelessWidget {
       padding: EdgeInsets.all(5),
       child: Material(
         elevation: 5,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: InkWell(
           onTap: () {
@@ -53,7 +53,7 @@ class PostItem extends StatelessWidget {
               Stack(
                 children: [
                   Hero(
-                    tag: isLandscape ? GlobalKey() : post.id,
+                    tag: isLandscape ? GlobalKey() : post.featuredMedia,
                     child: CachedNetworkImage(
                       fadeInDuration: Duration(milliseconds: 0),
                       progressIndicatorBuilder: (context, url, progress) {

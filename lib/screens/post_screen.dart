@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../classes/class_post.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:share/share.dart';
+import 'package:aixformation_app/widgets/category_name.dart';
 
 class PostScreen extends StatelessWidget {
   PostScreen(this.post);
@@ -58,7 +59,7 @@ class PostScreen extends StatelessWidget {
             pinned: context.watch<RemoteConfigHelper>().pinnedAppBar(),
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
-                tag: post.id,
+                tag: post.featuredMedia,
                 child: CachedNetworkImage(
                   imageUrl: post.featuredMedia,
                   fit: BoxFit.cover,
@@ -74,8 +75,6 @@ class PostScreen extends StatelessWidget {
                   child: Wrap(
                     direction: Axis.horizontal,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    //alignment: WrapAlignment.,
-                    //mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AuthorName(
                         authorId: post.authorId,
@@ -84,6 +83,12 @@ class PostScreen extends StatelessWidget {
                       Text(MyTime.dateToText(post.date)),
                       FavButton(post.id),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: CategoryName(
+                    categoriesId: post.categoriesId,
                   ),
                 ),
                 Padding(
