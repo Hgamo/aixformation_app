@@ -47,8 +47,18 @@ class _InternetScreenState extends State<InternetScreen> {
                     Text(
                       'Um mit der App zu starten, musst du mit dem Internet verbunden sein.',
                     ),
-                    RaisedButton(
-                      color: Theme.of(context).accentColor,
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).accentColor),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
                       child: Text(
                         'Erneut versuchen',
                         style: TextStyle(color: Colors.white),

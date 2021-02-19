@@ -19,9 +19,17 @@ class CommentsWidget extends StatelessWidget {
           return Column(
             children: [
               Text('Kommentare'),
-              RaisedButton(
-                textColor: Colors.white,
-                color: Theme.of(context).accentColor,
+              ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  backgroundColor:
+                      MaterialStateProperty.all(Theme.of(context).accentColor),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
                 child: Text('Hinterlasse einen Kommentar'),
                 onPressed: () => Navigator.push(
                   context,

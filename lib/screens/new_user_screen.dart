@@ -41,12 +41,17 @@ class NewUserScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
                   child: Text('Mit E-Mail Adresse Einloggen'),
                   onPressed: () {
                     Navigator.of(context).push(

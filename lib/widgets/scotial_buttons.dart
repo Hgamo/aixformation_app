@@ -7,7 +7,14 @@ class SoctialButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        FlatButton(
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+              MediaQuery.of(context).platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+          ),
           onPressed: () {
             launch('https://chat.whatsapp.com/invite/IrT0Tl5VTAJEwscmGPtSzp');
             FirebaseAnalytics().logEvent(
@@ -19,7 +26,14 @@ class SoctialButtons extends StatelessWidget {
           },
           child: Text('WhatsApp'),
         ),
-        FlatButton(
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+              MediaQuery.of(context).platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+          ),
           onPressed: () {
             launch('https://instagram.com/aixformation');
             FirebaseAnalytics().logEvent(
@@ -31,7 +45,14 @@ class SoctialButtons extends StatelessWidget {
           },
           child: Text('Instagram'),
         ),
-        FlatButton(
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+              MediaQuery.of(context).platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+          ),
           onPressed: () {
             launch('https://www.twitter.com/aixformation');
             FirebaseAnalytics().logEvent(
@@ -43,7 +64,14 @@ class SoctialButtons extends StatelessWidget {
           },
           child: Text('Twitter'),
         ),
-        FlatButton(
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+              MediaQuery.of(context).platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+          ),
           onPressed: () {
             launch('https://t.me/aixformation');
             FirebaseAnalytics().logEvent(
@@ -55,7 +83,14 @@ class SoctialButtons extends StatelessWidget {
           },
           child: Text('Telegram'),
         ),
-        FlatButton(
+        TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+              MediaQuery.of(context).platformBrightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+          ),
           onPressed: () {
             launch('https://www.facebook.com/AiXformation/');
             FirebaseAnalytics().logEvent(

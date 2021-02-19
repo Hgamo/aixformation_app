@@ -82,9 +82,18 @@ class _EMailScreenState extends State<EMailScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
-                      textColor: Colors.white,
-                      color: Theme.of(context).accentColor,
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).accentColor),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
                       child: Text('Einloggen/Registrieren'),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
