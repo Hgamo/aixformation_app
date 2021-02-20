@@ -1,4 +1,5 @@
 import 'package:aixformation_app/helper/auth_helper.dart';
+import 'package:aixformation_app/screens/phoneauth_screen.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,30 @@ class NewUserScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => EMailScreen(),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).accentColor),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                  child: Text('Mit Telefonnummer Einloggen'),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PhoneAuthScreen(),
                         fullscreenDialog: true,
                       ),
                     );
