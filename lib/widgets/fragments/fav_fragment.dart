@@ -9,7 +9,20 @@ class FavFragment extends StatelessWidget {
     final List<Post> allPosts = Provider.of<List<Post>>(context);
 
     final List<int> favInts = Provider.of<List<int>>(context);
-
+    if (favInts.isEmpty) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.favorite,
+            color: Theme.of(context).accentColor,
+            size: 100,
+          ),
+          Text('Du hast noch keine Favorieten'),
+        ],
+      );
+    }
     List<Post> favPosts = [];
     allPosts.forEach((element) {
       if (favInts.contains(element.id)) {
