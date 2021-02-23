@@ -76,7 +76,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                         ),
                       ),
                     );
-                    if (true) {
+                    if (!Platform.isAndroid) {
                       await showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
