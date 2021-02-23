@@ -77,12 +77,10 @@ class HomeFragment extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       )
                     : PostScreen(
-                        posts.firstWhere(
-                          (element) =>
-                              element.id ==
-                              Provider.of<LandScapeProvider>(context)
-                                  .currentPostId,
-                        ),
+                        posts.firstWhere((element) =>
+                            element.id ==
+                            Provider.of<LandScapeProvider>(context)
+                                .currentPostId),
                       ),
               ),
             ],

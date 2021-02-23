@@ -3,8 +3,6 @@ import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
 class FavHelper {
   static Future<bool> isFav(int postId) async {
     final firestore = FirebaseFirestore.instance;
@@ -39,10 +37,11 @@ class FavHelper {
     final firestore = FirebaseFirestore.instance;
     final User user = Auth.getAuthstate();
     return firestore
-        .collection('fav')
-        .doc(user.uid)
-        .snapshots()
-        .map(favIntsFromDocument);
+            .collection('fav')
+            .doc(user.uid)
+            .snapshots()
+            .map(favIntsFromDocument) ??
+        [];
   }
 
   static List<int> favIntsFromDocument(DocumentSnapshot snapshot) {

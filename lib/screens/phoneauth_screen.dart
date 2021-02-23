@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/shared/color_white.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,10 +50,10 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
               onPressed: () {
                 FirebaseAuth.instance.verifyPhoneNumber(
                   phoneNumber: number,
-                  verificationCompleted: (phoneAuthCredential) {
-                    print('singn in 2');
-                    FirebaseAuth.instance
+                  verificationCompleted: (phoneAuthCredential) async {
+                    await FirebaseAuth.instance
                         .signInWithCredential(phoneAuthCredential);
+                    await Auth.newUser();
                   },
                   verificationFailed: (error) {
                     if (error.code == 'invalid-phone-number') {
@@ -65,7 +66,17 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     }
                   },
                   codeSent: (verificationId, forceResendingToken) async {
-                    if (!Platform.isAndroid) {
+                    print('code send');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Scaffold(
+                          body: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                      ),
+                    );
+                    if (true) {
                       await showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -97,9 +108,12 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                       );
                       PhoneAuthCredential phoneAuthCredential =
                           PhoneAuthProvider.credential(
-                              verificationId: verificationId, smsCode: code);
+                        verificationId: verificationId,
+                        smsCode: code,
+                      );
                       await FirebaseAuth.instance
                           .signInWithCredential(phoneAuthCredential);
+                      await Auth.newUser();
                     }
                   },
                   codeAutoRetrievalTimeout: (verificationId) {
