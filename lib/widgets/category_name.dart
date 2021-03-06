@@ -1,7 +1,6 @@
 import 'package:aixformation_app/classes/category.dart';
 import 'package:aixformation_app/widgets/cat_text.dart';
 import 'package:flutter/material.dart';
-import 'package:html_unescape/html_unescape.dart';
 import 'package:provider/provider.dart';
 
 class CategoryName extends StatelessWidget {
@@ -14,10 +13,7 @@ class CategoryName extends StatelessWidget {
     return Wrap(
       children: categoriesId
           .map(
-            (e) => CatText(
-              HtmlUnescape().convert(
-                  categories.firstWhere((element) => element.id == e).name),
-            ),
+            (e) => CatText(categories.firstWhere((element) => element.id == e)),
           )
           .toList(),
     );
