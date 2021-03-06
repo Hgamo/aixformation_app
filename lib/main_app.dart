@@ -61,18 +61,22 @@ class _SecondAppState extends State<SecondApp> {
               StreamProvider<List<int>>(
                 create: (context) => FavHelper.getFavsIds,
                 lazy: false,
+                initialData: [],
               ),
               StreamProvider<List<Author>>(
                 create: (context) => GetAuthors().authors,
                 lazy: false,
+                initialData: [],
               ),
               StreamProvider<List<Category>>(
                 create: (context) => GetCategories().categories,
                 lazy: false,
+                initialData: [],
               ),
               StreamProvider<List<Post>>(
                 create: (context) => GetPosts.getPosts(),
                 lazy: false,
+                initialData: [],
               ),
               FutureProvider<rki.District>(
                 create: (context) => rki.RKICovidAPI.getDisctricts().then(
@@ -80,10 +84,12 @@ class _SecondAppState extends State<SecondApp> {
                       (element) => element.name == 'Städteregion Aachen'),
                 ),
                 lazy: false,
+                initialData: null,
               ),
               FutureProvider<rki.CovidCases>(
                 create: (context) => rki.RKICovidAPI.getCases(),
                 lazy: false,
+                initialData: null,
               ),
               ChangeNotifierProxyProvider<List<Post>, LandScapeProvider>(
                 create: (context) => LandScapeProvider(
