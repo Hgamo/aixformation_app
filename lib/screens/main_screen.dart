@@ -13,6 +13,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -130,6 +131,10 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
         actions: [
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () => Share.share('https://aixformation.page.link/app'),
+          ),
           PopUpMenu(),
         ],
         centerTitle: true,

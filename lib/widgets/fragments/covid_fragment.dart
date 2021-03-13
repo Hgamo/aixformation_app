@@ -129,7 +129,7 @@ class CovidGridTile extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
-        onTap: ()=> launch('https://corona.rki.de'),
+        onTap: () => launch('https://corona.rki.de'),
         child: GridTile(
           footer: GridTileBar(
             backgroundColor: Colors.black26,
