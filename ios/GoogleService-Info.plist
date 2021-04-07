@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>201749443754-8kjcfvbkrhldevokuv034rqf7140o606.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.201749443754-8kjcfvbkrhldevokuv034rqf7140o606</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>201749443754-7bmsjbvqovr4ha2n7mo4tgl0ov0omc1t.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBUXi1LJqzsNrje_xI5fpxO83VJmfFf3c4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>201749443754</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.helmerdeveloper.aixformationApp</string>
+	<key>PROJECT_ID</key>
+	<string>aixformation</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aixformation.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:201749443754:ios:28ab2566e273a47d97ccd3</string>
+	<key>DATABASE_URL</key>
+	<string>https://aixformation.firebaseio.com</string>
+</dict>
+</plist>
