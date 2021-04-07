@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/screens/phoneauth_screen.dart';
 import 'package:auth_buttons/auth_buttons.dart';
@@ -66,6 +68,7 @@ class NewUserScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
+                if(!Platform.isIOS)
                 ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(

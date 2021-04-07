@@ -92,41 +92,39 @@ class _MainScreenState extends State<MainScreen> {
       SettingsFragment(),
     ];
     return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: pagei,
-          onTap: (value) {
-            setState(() {
-              pagei = value;
-              _pageController.jumpToPage(
-                value,
-                // duration: Duration(milliseconds: 300),
-                // curve: Curves.easeOut,
-              );
-            });
-          },
-          fixedColor: Theme.of(context).accentColor,
-          items: [
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: pagei,
+        onTap: (value) {
+          setState(() {
+            pagei = value;
+            _pageController.jumpToPage(
+              value,
+              // duration: Duration(milliseconds: 300),
+              // curve: Curves.easeOut,
+            );
+          });
+        },
+        fixedColor: Theme.of(context).accentColor,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.article),
+            label: 'Artikel',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favoriten',
+          ),
+          if (Provider.of<RemoteConfigHelper>(context).showCovid())
             BottomNavigationBarItem(
-              icon: Icon(Icons.article),
-              label: 'Artikel',
+              icon: Icon(Icons.coronavirus),
+              label: 'Corona',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favoriten',
-            ),
-            if (Provider.of<RemoteConfigHelper>(context).showCovid())
-              BottomNavigationBarItem(
-                icon: Icon(Icons.coronavirus),
-                label: 'Corona',
-              ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Einstellungen',
-            ),
-          ],
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Einstellungen',
+          ),
+        ],
       ),
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
