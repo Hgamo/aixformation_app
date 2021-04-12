@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 }
 rootProject.ext {
   set('FlutterFire', [
-    FirebaseSDKVersion: '26.3.0'
+    FirebaseSDKVersion: '27.0.0'
   ])
 }
 
