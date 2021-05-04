@@ -30,7 +30,7 @@ class NewUserScreen extends StatelessWidget {
             Column(
               children: [
                 GoogleAuthButton(
-                  borderRadius: 10,
+                  style: AuthButtonStyle(borderRadius: 10),
                   onPressed: () async {
                     await Auth.logInWithGoogle();
                     FirebaseAnalytics().setUserId(Auth.getAuthstate().uid);
