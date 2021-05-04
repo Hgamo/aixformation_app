@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:aixformation_app/classes/author.dart';
 import 'package:aixformation_app/classes/category.dart';
 import 'package:aixformation_app/classes/class_post.dart';
+import 'package:aixformation_app/classes/vac_data.dart';
 import 'package:aixformation_app/helper/fav_helper.dart';
 import 'package:aixformation_app/helper/get_authors.dart';
 import 'package:aixformation_app/helper/get_categories.dart';
 import 'package:aixformation_app/helper/get_posts.dart';
+import 'package:aixformation_app/helper/vac_helper.dart';
 import 'package:aixformation_app/shared/theme.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -55,8 +57,7 @@ class _SecondAppState extends State<SecondApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: user == null
-          ? [Provider(create: (context) => null)]
+      providers: user == null ? [Provider(create: (context) => null)]
           : [
               StreamProvider<List<int>>(
                 create: (context) => FavHelper.getFavsIds,
@@ -88,6 +89,11 @@ class _SecondAppState extends State<SecondApp> {
               ),
               FutureProvider<rki.CovidCases>(
                 create: (context) => rki.RKICovidAPI.getCases(),
+                lazy: false,
+                initialData: null,
+              ),
+              FutureProvider<VacData>(
+                create: (context) => VacHelper.getVacData(),
                 lazy: false,
                 initialData: null,
               ),

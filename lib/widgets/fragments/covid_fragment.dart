@@ -1,3 +1,4 @@
+import 'package:aixformation_app/classes/vac_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rki_corona_api/rki_corona_api.dart';
@@ -8,6 +9,7 @@ class CovidFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     final aachen = Provider.of<District>(context);
     final cases = Provider.of<CovidCases>(context);
+    final vacData = Provider.of<VacData>(context);
     if (aachen == null || cases == null) {
       return Center(
         child: CircularProgressIndicator(),
@@ -61,6 +63,12 @@ class CovidFragment extends StatelessWidget {
           height: 10,
         ),
         Text(
+          'Karte',
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
+        Image.network('https://api.corona-zahlen.org/map/districts'),
+        Text(
           'Städteregion Aachen',
           style: Theme.of(context).textTheme.headline5,
           textAlign: TextAlign.center,
@@ -89,6 +97,33 @@ class CovidFragment extends StatelessWidget {
             CovidGridTile(
               barText: 'Totale Todesfälle',
               number: aachen.deaths.toString(),
+            ),
+          ],
+        ),
+        GridView.count(
+          shrinkWrap: true,
+          physics: ScrollPhysics(),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: rowItmes,
+          clipBehavior: Clip.hardEdge,
+          padding: EdgeInsets.all(10),
+          children: [
+            CovidGridTile(
+              number: (vacData.vaccinated/1000000).toStringAsFixed(2),
+              barText: 'Impfungen (In Milionen)',
+            ),
+            CovidGridTile(
+              barText: 'Quote',
+              number: vacData.vaccinatedQuote.toStringAsFixed(2)+'%',
+            ),
+            CovidGridTile(
+              barText: 'Zweitimpfung (In Milionen)',
+              number: (vacData.secondVaccination/1000000).toStringAsFixed(2),
+            ),
+            CovidGridTile(
+              barText: 'Quote',
+              number: vacData.secondVaccinationQuote.toStringAsFixed(2)+'%',
             ),
           ],
         ),
