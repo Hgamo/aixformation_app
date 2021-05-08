@@ -100,6 +100,11 @@ class CovidFragment extends StatelessWidget {
             ),
           ],
         ),
+        Text(
+          'Impfungen',
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
         GridView.count(
           shrinkWrap: true,
           physics: ScrollPhysics(),
@@ -110,20 +115,20 @@ class CovidFragment extends StatelessWidget {
           padding: EdgeInsets.all(10),
           children: [
             CovidGridTile(
-              number: (vacData.vaccinated/1000000).toStringAsFixed(2),
-              barText: 'Impfungen (In Milionen)',
+              number: (vacData.vaccinated / 1000000).toStringAsFixed(2),
+              barText: 'Erstimpfungen (In Milionen)',
             ),
             CovidGridTile(
               barText: 'Quote',
-              number: vacData.vaccinatedQuote.toStringAsFixed(2)+'%',
+              number: vacData.vaccinatedQuote.toStringAsFixed(2),
             ),
             CovidGridTile(
               barText: 'Zweitimpfung (In Milionen)',
-              number: (vacData.secondVaccination/1000000).toStringAsFixed(2),
+              number: (vacData.secondVaccination / 1000000).toStringAsFixed(2),
             ),
             CovidGridTile(
               barText: 'Quote',
-              number: vacData.secondVaccinationQuote.toStringAsFixed(2)+'%',
+              number: vacData.secondVaccinationQuote.toStringAsFixed(2),
             ),
           ],
         ),

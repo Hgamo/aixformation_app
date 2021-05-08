@@ -12,7 +12,7 @@ class GetPosts {
         .map(fromSnapshotToList);
   }
 
-  static List<Post> fromSnapshotToList(QuerySnapshot snapshot) {
+  static List<Post> fromSnapshotToList(QuerySnapshot<Map> snapshot) {
     List<Post> posts = [];
     snapshot.docs.forEach((element) {
       final postData = element.data();

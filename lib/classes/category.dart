@@ -7,7 +7,7 @@ class Category {
     this.id,
     this.name,
   });
-  factory Category.fromFirebase(DocumentSnapshot snapshot) {
+  factory Category.fromFirebase(DocumentSnapshot<Map> snapshot) {
     final data = snapshot.data();
     return Category(
       id: data['id'],

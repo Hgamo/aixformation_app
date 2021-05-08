@@ -5,10 +5,9 @@ class RemoteConfigHelper {
   RemoteConfigHelper({this.remoteConfig});
 
   static Future<RemoteConfigHelper> get instance async {
-    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    final RemoteConfig remoteConfig = RemoteConfig.instance;
 
-    await remoteConfig.fetch();
-    await remoteConfig.activateFetched();
+    await remoteConfig.fetchAndActivate();
     return RemoteConfigHelper(remoteConfig: remoteConfig);
   }
 

@@ -12,7 +12,7 @@ class Author {
     this.avatarUrl,
   });
 
-  factory Author.formFirebase(DocumentSnapshot snapshot) {
+  factory Author.formFirebase(DocumentSnapshot<Map> snapshot) {
     return Author(
       id: snapshot.data()['id'],
       name: snapshot.data()['name'],

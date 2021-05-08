@@ -44,7 +44,7 @@ class FavHelper {
         [];
   }
 
-  static List<int> favIntsFromDocument(DocumentSnapshot snapshot) {
+  static List<int> favIntsFromDocument(DocumentSnapshot<Map> snapshot) {
     List<int> favints = [];
     final data = snapshot.data();
     data.forEach((key, value) {
