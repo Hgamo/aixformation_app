@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
 import 'package:connectivity/connectivity.dart';
@@ -91,7 +93,7 @@ class SettingsFragment extends StatelessWidget {
                 settings: RouteSettings(name: 'Datenschutzerklärung Screen'),
                 builder: (context) => WebsiteScreen(
                   title: 'Datenschutzerklärung',
-                  url: 'https://aixformation.de/datenschutzerklaerung/',
+                  url: 'https://auhuurmagazin.de/datenschutzerklaerung/',
                 ),
               ),
             );

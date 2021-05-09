@@ -35,7 +35,7 @@ class SoctialButtons extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            launch('https://instagram.com/aixformation');
+            launch('https://instagram.com/auhuurmagazin');
             FirebaseAnalytics().logEvent(
               name: 'social_buttons',
               parameters: {
@@ -54,7 +54,7 @@ class SoctialButtons extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            launch('https://www.twitter.com/aixformation');
+            launch('https://twitter.com/auhuurmagazin');
             FirebaseAnalytics().logEvent(
               name: 'social_buttons',
               parameters: {
@@ -73,7 +73,7 @@ class SoctialButtons extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            launch('https://t.me/aixformation');
+            launch('https://telegram.me/auhuurmagazin');
             FirebaseAnalytics().logEvent(
               name: 'social_buttons',
               parameters: {
@@ -92,7 +92,7 @@ class SoctialButtons extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            launch('https://www.facebook.com/AiXformation/');
+            launch('https://facebook.com/auhuurmagazin');
             FirebaseAnalytics().logEvent(
               name: 'social_buttons',
               parameters: {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:aixformation_app/helper/auth_helper.dart';
-import 'package:aixformation_app/shared/color_white.dart';
+import 'package:aixformation_app/shared/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     MediaQuery.of(context).platformBrightness == Brightness.dark
                         ? Brightness.dark
                         : Brightness.light,
-                primarySwatch: aixGreen,
+                primarySwatch: ahYellow,
               ),
               child: TextField(
                 onChanged: (value) => number = value,
@@ -88,7 +88,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                           Brightness.dark
                                       ? Brightness.dark
                                       : Brightness.light,
-                              primarySwatch: aixGreen,
+                              primarySwatch: ahYellow,
                             ),
                             child: TextField(
                               onChanged: (value) => value = code,

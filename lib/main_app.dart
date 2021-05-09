@@ -118,7 +118,7 @@ class _SecondAppState extends State<SecondApp> {
         navigatorObservers: [
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
         ],
-        title: 'AiXformation',
+        title: 'Auhuur Magazin',
         home: Wrapper(),
       ),
     );

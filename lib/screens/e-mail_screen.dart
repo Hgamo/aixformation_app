@@ -1,7 +1,7 @@
 import 'package:aixformation_app/helper/auth_helper.dart';
 import 'package:aixformation_app/helper/auth_state_helper.dart';
 import 'package:aixformation_app/shared/auth_status_enum.dart';
-import 'package:aixformation_app/shared/color_white.dart';
+import 'package:aixformation_app/shared/colors.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _EMailScreenState extends State<EMailScreen> {
                     MediaQuery.of(context).platformBrightness == Brightness.dark
                         ? Brightness.dark
                         : Brightness.light,
-                primarySwatch: aixGreen,
+                primarySwatch: ahYellow,
               ),
               child: Form(
                 key: _formKey,
@@ -155,7 +155,7 @@ class ResetPasswordDialog extends StatelessWidget {
               MediaQuery.of(context).platformBrightness == Brightness.dark
                   ? Brightness.dark
                   : Brightness.light,
-          primarySwatch: aixGreen,
+          primarySwatch: ahYellow,
         ),
         child: AlertDialog(
           title: Text('Passwort zurücksetzen'),

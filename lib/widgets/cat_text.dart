@@ -28,7 +28,7 @@ class CatText extends StatelessWidget {
           backgroundColor: Theme.of(context).accentColor,
           label: Text(
             HtmlUnescape().convert(cat.name),
-            style: TextStyle(color: Colors.white, height: 1),
+            style: TextStyle(height: 1),
           ),
         ),
       ),

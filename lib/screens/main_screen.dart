@@ -131,14 +131,12 @@ class _MainScreenState extends State<MainScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.share),
-            onPressed: () => Share.share('https://aixformation.page.link/app'),
+            onPressed: () => Share.share('https://link.auhuurmagazin.de/app'),
           ),
           PopUpMenu(),
         ],
         centerTitle: true,
-        title: Text(
-          'AiXformation',
-        ),
+        title: Text('Auhuur Magazin'),
       ),
       body: PageView(
         onPageChanged: (value) {

@@ -1,6 +1,5 @@
 import 'package:aixformation_app/classes/author.dart';
 import 'package:aixformation_app/helper/my_time.dart';
-import 'package:aixformation_app/helper/remote_config_helper.dart';
 import 'package:aixformation_app/shared/website_screen.dart';
 import 'package:aixformation_app/widgets/author_name.dart';
 import 'package:aixformation_app/widgets/author_widget.dart';
@@ -56,7 +55,7 @@ class PostScreen extends StatelessWidget {
               ),
             ],
             expandedHeight: MediaQuery.of(context).size.height / 3,
-            pinned: context.watch<RemoteConfigHelper>().pinnedAppBar(),
+            pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
                 tag: post.featuredMedia,
