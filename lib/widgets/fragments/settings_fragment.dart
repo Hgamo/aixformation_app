@@ -76,9 +76,26 @@ class SettingsFragment extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 settings: RouteSettings(name: 'Impressum Screen'),
-                builder: (context) => WebsiteScreen(
+                builder: (context) =>
+                    /*WebsiteScreen(
                   title: 'Impressum',
-                  url: 'https://aixmedia.org/imprint/',
+                  url: 'https://auhuurmagazin.de/impressum/',
+                ),*/
+                    Scaffold(
+                  appBar: AppBar(
+                    title: Text('Impressum'),
+                  ),
+                  body: ListView(
+                    children: [
+                      Text('aix:media Medien-AG'),
+                      Text('Warmweiher Straße 4-8'),
+                      Text('52076 Aachen'),
+                      Text('kontakt@aixmedia.org'),
+                      Text('+49 160 5289358'),
+                      Text('V.i.S.d.P.'),
+                      Text('Vitus Studemund'),
+                    ],
+                  ),
                 ),
               ),
             );
