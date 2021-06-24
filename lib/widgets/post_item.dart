@@ -17,6 +17,7 @@ class PostItem extends StatelessWidget {
   final Post post;
   final bool isnewesPost;
   final bool isLandscape;
+  final heroTag = UniqueKey();
   PostItem({
     this.post,
     this.isnewesPost,
@@ -43,7 +44,7 @@ class PostItem extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 settings: RouteSettings(name: 'PostScreen ${post.id}'),
-                builder: (context) => PostScreen(post),
+                builder: (context) => PostScreen(post, heroTag),
               ),
             );
           },
@@ -53,7 +54,7 @@ class PostItem extends StatelessWidget {
               Stack(
                 children: [
                   Hero(
-                    tag: isLandscape ? GlobalKey() : post.featuredMedia,
+                    tag: isLandscape ? GlobalKey() : heroTag,
                     child: CachedNetworkImage(
                       fadeInDuration: Duration(milliseconds: 0),
                       progressIndicatorBuilder: (context, url, progress) {

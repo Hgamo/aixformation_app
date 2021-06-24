@@ -16,8 +16,9 @@ import 'package:share/share.dart';
 import 'package:aixformation_app/widgets/category_name.dart';
 
 class PostScreen extends StatelessWidget {
-  PostScreen(this.post);
+  PostScreen(this.post, this.heroTag);
   final Post post;
+  final Object heroTag;
   final unescape = HtmlUnescape();
   @override
   Widget build(BuildContext context) {
@@ -55,10 +56,10 @@ class PostScreen extends StatelessWidget {
               ),
             ],
             expandedHeight: MediaQuery.of(context).size.height / 3,
-            pinned: true,
+            pinned: MediaQuery.of(context).orientation == Orientation.landscape? false: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Hero(
-                tag: post.featuredMedia,
+                tag: heroTag,
                 child: CachedNetworkImage(
                   imageUrl: post.featuredMedia,
                   fit: BoxFit.cover,

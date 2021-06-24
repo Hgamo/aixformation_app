@@ -7,6 +7,7 @@ import 'package:html_unescape/html_unescape.dart';
 
 class FavItem extends StatelessWidget {
   final Post post;
+  final heroTag = UniqueKey();
   FavItem(this.post);
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class FavItem extends StatelessWidget {
             MaterialPageRoute(
               settings: RouteSettings(name: 'FavScreen ${post.id}'),
               builder: (context) {
-                return PostScreen(post);
+                return PostScreen(post, heroTag);
               },
             ),
           ),
@@ -30,7 +31,7 @@ class FavItem extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Hero(
-                  tag: post.featuredMedia,
+                  tag: heroTag,
                   child: CachedNetworkImage(
                     fadeInDuration: Duration(milliseconds: 0),
                     imageUrl: post.featuredMedia,

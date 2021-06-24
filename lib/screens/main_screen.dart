@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       final Post post =
           await GetPosts.getPostById(int.parse(message.data['post_id']));
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PostScreen(post),
+        builder: (context) => PostScreen(post, UniqueKey()),
       ));
     }
   }
@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
         final parameters = linkData.link.queryParameters;
         final post = await GetPosts.getPostById(int.parse(parameters['p']));
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PostScreen(post),
+          builder: (context) => PostScreen(post, UniqueKey()),
         ));
       },
       onError: (error) {
@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       final parameters = linkData.link.queryParameters;
       final post = await GetPosts.getPostById(int.parse(parameters['p']));
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PostScreen(post),
+        builder: (context) => PostScreen(post, UniqueKey()),
       ));
     }
   }
@@ -69,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
       final Post post =
           await GetPosts.getPostById(int.parse(message.data['post_id']));
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PostScreen(post),
+        builder: (context) => PostScreen(post,UniqueKey()),
       ));
     });
     handleMessage();
