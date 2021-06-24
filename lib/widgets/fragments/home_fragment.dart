@@ -5,7 +5,6 @@ import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/remote_config_helper.dart';
 import 'package:aixformation_app/provider/landscape_provider.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
-import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:aixformation_app/widgets/higlight_post_item.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
 import 'package:aixformation_app/widgets/scotial_buttons.dart';
