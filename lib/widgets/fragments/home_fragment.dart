@@ -5,6 +5,7 @@ import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/remote_config_helper.dart';
 import 'package:aixformation_app/provider/landscape_provider.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
+import 'package:aixformation_app/widgets/Fav_item.dart';
 import 'package:aixformation_app/widgets/higlight_post_item.dart';
 import 'package:aixformation_app/widgets/post_item.dart';
 import 'package:aixformation_app/widgets/scotial_buttons.dart';
@@ -16,6 +17,11 @@ class HomeFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Post> posts = Provider.of<List<Post>>(context) ?? [];
+    if (posts.length == 0) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     final bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     final List<Widget> widgetList = [
@@ -23,29 +29,50 @@ class HomeFragment extends StatelessWidget {
         height: 57,
       ),
     ];
+    widgetList.add(
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          'Neueste Beiträge',
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
     widgetList.add(CarouselSlider(
       items: [
-        HilightPostItem(
+        PostItem(
           post: posts[0],
           isLandscape: isLandscape,
           isnewesPost: true,
         ),
-        HilightPostItem(
+        PostItem(
           post: posts[1],
           isLandscape: isLandscape,
           isnewesPost: false,
         ),
-        HilightPostItem(
+        PostItem(
           post: posts[2],
           isLandscape: isLandscape,
           isnewesPost: false,
         ),
       ],
-      options: CarouselOptions(),
+      options: CarouselOptions(
+          enableInfiniteScroll: false, height: 470, viewportFraction: 0.9),
     ));
+    widgetList.add(
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          'Alle Beiträge',
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
     widgetList.addAll(
       posts.asMap().entries.map<Widget>(
-            (post) => PostItem(
+            (post) => HilightPostItem(
               post: post.value,
               isLandscape: isLandscape,
               isnewesPost: post.key == 0,
@@ -108,6 +135,7 @@ class HomeFragment extends StatelessWidget {
                             element.id ==
                             Provider.of<LandScapeProvider>(context)
                                 .currentPostId),
+                        UniqueKey(),
                       ),
               ),
             ],
