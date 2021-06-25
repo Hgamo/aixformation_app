@@ -57,7 +57,7 @@ class HomeFragment extends StatelessWidget {
         ),
       ],
       options: CarouselOptions(
-          enableInfiniteScroll: false, height: 470, viewportFraction: 0.9),
+          enableInfiniteScroll: false, height: 450, viewportFraction: 0.9),
     ));
     widgetList.add(
       Padding(

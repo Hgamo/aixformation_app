@@ -83,16 +83,7 @@ class PostItem extends StatelessWidget {
                 child: HtmlWidget(
                   post.excerptHtml,
                   customWidgetBuilder: (element) {
-                    return HtmlWidget(
-                      element.innerHtml,
-                      customWidgetBuilder: (element) {
-                        return Text(
-                          element.innerHtml.split('<a')[0],
-                          style: GoogleFonts.ubuntu(),
-                          maxLines: 2,
-                        );
-                      },
-                    );
+                    return Text(element.innerHtml, maxLines: 2,);
                   },
                 ),
               ),
