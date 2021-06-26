@@ -26,8 +26,4 @@ jobs:
       with:
         flutter-version: '2.0.5'
     - run: flutter pub get
-    - run: flutter build appbundle --obfuscate --split-debug-info=build/app/outputs/symbols
-    - name: Release Apps
-      uses: actions/upload-artifact@v2
-      with:
-        path: '/build/app/outputs/bundle/release/app.aab'
+    - run: flutter analyze
