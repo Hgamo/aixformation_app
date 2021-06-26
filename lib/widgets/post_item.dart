@@ -9,7 +9,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:provider/provider.dart';
 
@@ -83,16 +82,7 @@ class PostItem extends StatelessWidget {
                 child: HtmlWidget(
                   post.excerptHtml,
                   customWidgetBuilder: (element) {
-                    return HtmlWidget(
-                      element.innerHtml,
-                      customWidgetBuilder: (element) {
-                        return Text(
-                          element.innerHtml.split('<a')[0],
-                          style: GoogleFonts.ubuntu(),
-                          maxLines: 2,
-                        );
-                      },
-                    );
+                    return Text(element.innerHtml, maxLines: 2,);
                   },
                 ),
               ),

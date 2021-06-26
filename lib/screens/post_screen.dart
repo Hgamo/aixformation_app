@@ -8,6 +8,7 @@ import 'package:aixformation_app/widgets/fav_button.dart';
 import 'package:aixformation_app/widgets/post_body.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:provider/provider.dart';
 import '../classes/class_post.dart';
@@ -70,6 +71,15 @@ class PostScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: HtmlWidget(
+                  post.excerptHtml,
+                  customWidgetBuilder: (element) {
+                    return Text(element.innerHtml, style: TextStyle(fontWeight: FontWeight.bold),);
+                  },
+                ),
+              ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Wrap(
