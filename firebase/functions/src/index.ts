@@ -44,7 +44,7 @@ export const updateapp = functions.https.onRequest(async (request, response) => 
     let data: [] = resp.data;
     data.forEach(element => {
       admin.firestore().collection('users').add({
-        'avatar_url': element['avatar_urls']['96'],
+        'avatar_url': element['simple_local_avatar'] == null ? element['avatar_urls']['96'] : element['simple_local_avatar']['96'],
         'description': element['description'],
         'id': element['id'],
         'name': element['name'],
