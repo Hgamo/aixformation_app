@@ -93,7 +93,7 @@ class SettingsFragment extends StatelessWidget {
                 settings: RouteSettings(name: 'Datenschutzerklärung Screen'),
                 builder: (context) => WebsiteScreen(
                   title: 'Datenschutzerklärung',
-                  url: 'https://auhuurmagazin.de/datenschutzerklaerung/',
+                  url: 'https://cdn.ampproject.org/c/s/auhuurmagazin.de/privacy-policy',
                 ),
               ),
             );
