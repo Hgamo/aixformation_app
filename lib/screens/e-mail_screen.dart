@@ -29,12 +29,9 @@ class _EMailScreenState extends State<EMailScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'AiXformation',
-              style: Theme.of(context).textTheme.headline3.copyWith(
-                  color: MediaQuery.of(context).platformBrightness ==
-                          Brightness.dark
-                      ? Colors.white
-                      : Colors.black),
+              'Auhuur Magazin !',
+              style: Theme.of(context).textTheme.headline5.copyWith(fontSize: 50,),
+              textAlign: TextAlign.center,
             ),
             Theme(
               data: ThemeData(

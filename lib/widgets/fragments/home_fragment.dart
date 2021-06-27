@@ -119,7 +119,7 @@ class HomeFragment extends StatelessWidget {
               ),
               Flexible(
                 flex: 2,
-                child: posts.length != 20
+                child: posts == null
                     ? Center(
                         child: CircularProgressIndicator(),
                       )

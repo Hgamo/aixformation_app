@@ -61,7 +61,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-allowProvisioningUpdates"
+            argument = "allowProvisioningUpdates"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-FIRDebugEnabled  "
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
