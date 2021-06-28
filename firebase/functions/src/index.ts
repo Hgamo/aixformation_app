@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as axios from "axios";
+import * as he from "he";
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -75,6 +76,7 @@ export const newpost = functions.https.onRequest(async (request, response) => {
     let docs = await admin.firestore().collection("posts").orderBy("date", "desc").get();
     let postData = docs.docs[0].data();
     let newTitle: string = postData['title'];
+    newTitle = he.decode(newTitle);
     let newImageUrl: string = postData['featuredMedia'];
     let newid: number = postData['id'];
     console.log(newTitle + newImageUrl + newid);
