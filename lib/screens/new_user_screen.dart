@@ -5,7 +5,6 @@ import 'package:aixformation_app/screens/phoneauth_screen.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:aixformation_app/screens/e-mail_screen.dart';
 
 String email;
@@ -22,10 +21,9 @@ class NewUserScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'AiXformation',
-              style: GoogleFonts.arvo(
-                fontSize: 40,
-              ),
+              'Auhuur Magazin !',
+              style: Theme.of(context).textTheme.headline5.copyWith(fontSize: 50,),
+              textAlign: TextAlign.center,
             ),
             Column(
               children: [

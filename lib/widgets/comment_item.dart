@@ -17,7 +17,7 @@ class CommentItem extends StatelessWidget {
             leading: CircleAvatar(
               child: Icon(
                 Icons.person,
-                color: Colors.black,
+                color: Theme.of(context).brightness == Brightness.dark? Colors.white: Colors.black,
               ),
             ),
             title: Text(comment.authorName),

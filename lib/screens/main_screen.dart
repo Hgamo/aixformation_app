@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     fBLinks.onLink(
       onSuccess: (linkData) async {
         final parameters = linkData.link.queryParameters;
-        final post = await GetPosts.getPostById(int.parse(parameters['p']));
+        final post = await GetPosts.getPostById(int.parse(parameters['post_id']));
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PostScreen(post, UniqueKey()),
         ));
@@ -50,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
     final linkData = await fBLinks.getInitialLink();
     if (linkData != null) {
       final parameters = linkData.link.queryParameters;
-      final post = await GetPosts.getPostById(int.parse(parameters['p']));
+      final post = await GetPosts.getPostById(int.parse(parameters['post_id']));
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => PostScreen(post, UniqueKey()),
       ));

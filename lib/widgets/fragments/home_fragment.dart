@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:aixformation_app/classes/class_post.dart';
-import 'package:aixformation_app/helper/app_Start.dart';
 import 'package:aixformation_app/helper/remote_config_helper.dart';
 import 'package:aixformation_app/provider/landscape_provider.dart';
 import 'package:aixformation_app/screens/post_screen.dart';
@@ -81,16 +80,11 @@ class HomeFragment extends StatelessWidget {
     final Widget stack = Stack(
       alignment: Alignment.topLeft,
       children: [
-        RefreshIndicator(
-          onRefresh: () async {
-            await AppStart.onAppStrat();
+        ListView.builder(
+          itemCount: posts.length + 1,
+          itemBuilder: (context, index) {
+            return widgetList[index];
           },
-          child: ListView.builder(
-            itemCount: posts.length + 1,
-            itemBuilder: (context, index) {
-              return widgetList[index];
-            },
-          ),
         ),
         Provider.of<RemoteConfigHelper>(context).blurButtons()
             ? Container(
@@ -125,7 +119,7 @@ class HomeFragment extends StatelessWidget {
               ),
               Flexible(
                 flex: 2,
-                child: posts.length != 20
+                child: posts == null
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
